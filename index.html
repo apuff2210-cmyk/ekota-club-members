@@ -54,6 +54,10 @@
           <p class="text-[11px] text-slate-500 font-medium">নাম, পদবি ও মোবাইল ডিরেক্টরি</p>
         </div>
       </div>
+        <!-- কার্যক্রম বাটন -->
+        <button type="button" onclick="toggleGalleryModal(true)" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold px-2.5 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm transition-all mr-2">
+          <i class="fa-solid fa-images text-emerald-600"></i> কার্যক্রম
+        </button>
 
       <!-- Admin Status / Login Button -->
       <button id="adminLoginBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
@@ -63,6 +67,44 @@
 <!-- কভার ব্যানার -->
 <div class="w-full max-w-xl mx-auto mb-4 overflow-hidden rounded-2xl shadow-sm">
   <img src="banner.png" alt="একতা ক্লাব ব্যানার" class="w-full h-auto object-cover block">
+</div>
+<!-- কার্যক্রম ছবির পপ-আপ (Modal) -->
+<div id="galleryModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 hidden">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+    
+    <!-- পপ-আপ হেডার -->
+    <div class="px-4 py-3 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
+      <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+        <i class="fa-solid fa-camera-retro text-emerald-600"></i> একতা ক্লাবের কার্যক্রম
+      </h3>
+      <button type="button" onclick="toggleGalleryModal(false)" class="text-slate-500 hover:text-slate-800 text-lg w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200">
+        ✕
+      </button>
+    </div>
+
+    <!-- ছবির তালিকা -->
+    <div class="p-4 overflow-y-auto space-y-4">
+      
+      <!-- ছবি ১ -->
+      <div class="border border-slate-100 rounded-xl overflow-hidden shadow-sm bg-slate-50">
+        <img src="activity1.jpg" alt="কার্যক্রম ১" class="w-full h-44 object-cover">
+        <div class="p-2.5">
+          <p class="font-semibold text-slate-800 text-xs">বার্ষিক প্রীতি ফুটবল ম্যাচ</p>
+          <span class="text-[10px] text-slate-400">তারিখ: ২০২৬</span>
+        </div>
+      </div>
+
+      <!-- ছবি ২ -->
+      <div class="border border-slate-100 rounded-xl overflow-hidden shadow-sm bg-slate-50">
+        <img src="activity2.jpg" alt="কার্যক্রম ২" class="w-full h-44 object-cover">
+        <div class="p-2.5">
+          <p class="font-semibold text-slate-800 text-xs">বৃক্ষরোপণ কর্মসূচি</p>
+          <span class="text-[10px] text-slate-400">তারিখ: ২০২৬</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
     <!-- Main Content Area -->
@@ -531,6 +573,17 @@
     };
 
     updateAdminUI();
+    window.toggleGalleryModal = function(show) {
+  const modal = document.getElementById('galleryModal');
+  if (modal) {
+    if (show) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+};
+
   </script>
 </body>
   </html>
