@@ -61,7 +61,7 @@
       </button>
     </header>
 
-    <!-- Main Content Area (সবাই দেখতে পাবে) -->
+    <!-- Main Content Area -->
     <main class="space-y-4">
       <!-- Summary Card -->
       <div class="light-glass-card p-3 rounded-2xl flex justify-between items-center px-4">
@@ -74,7 +74,7 @@
         </button>
       </div>
 
-      <!-- Add/Edit Member Form (লগইন করা থাকলে সহজে আসবে) -->
+      <!-- Add/Edit Member Form -->
       <form id="memberForm" class="light-glass-card p-4 rounded-3xl shadow-xl space-y-3 hidden">
         <div class="flex justify-between items-center border-b border-slate-200 pb-2">
           <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
@@ -93,25 +93,25 @@
           <div>
             <label class="text-[11px] text-slate-500 font-medium ml-1">পদবি / ভূমিকা *</label>
             <select id="memberRole" required class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5 font-medium cursor-pointer">
-              <option value="সাধারণ সদস্য">সাধারণ সদস্য</option>
+              <option value="উপদেষ্টা">উপদেষ্টা</option>
               <option value="সভাপতি">সভাপতি</option>
               <option value="সহ-সভাপতি">সহ-সভাপতি</option>
               <option value="সাধারণ সম্পাদক">সাধারণ সম্পাদক</option>
               <option value="যুগ্ম সাধারণ সম্পাদক">যুগ্ম সাধারণ সম্পাদক</option>
-              <option value="কোষাধ্যক্ষ / ক্যাশিয়ার">কোষাধ্যক্ষ / ক্যাশিয়ার</option>
+              <option value="কোষাধ্যক্ষ">কোষাধ্যক্ষ</option>
               <option value="সাংগঠনিক সম্পাদক">সাংগঠনিক সম্পাদক</option>
               <option value="দপ্তর সম্পাদক">দপ্তর সম্পাদক</option>
               <option value="প্রচার সম্পাদক">প্রচার সম্পাদক</option>
               <option value="ক্রীড়া সম্পাদক">ক্রীড়া সম্পাদক</option>
-              <option value="উপদেষ্টা">উপদেষ্টা</option>
+              <option value="সাধারণ সদস্য" selected>সাধারণ সদস্য</option>
             </select>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
-            <label class="text-[11px] text-slate-500 font-medium ml-1">মোবাইল নম্বর *</label>
-            <input type="tel" id="memberPhone" placeholder="017xxxxxxxx" required class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5">
+            <label class="text-[11px] text-slate-500 font-medium ml-1">মোবাইল নম্বর (ঐচ্ছিক)</label>
+            <input type="tel" id="memberPhone" placeholder="017xxxxxxxx (না থাকলে ফাঁকা রাখুন)" class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5">
           </div>
           <div>
             <label class="text-[11px] text-slate-500 font-medium ml-1">রক্তের গ্রুপ (ঐচ্ছিক)</label>
@@ -130,7 +130,7 @@
         </div>
 
         <div>
-          <label class="text-[11px] text-slate-500 font-medium ml-1">বর্তমান ঠিকানা / গ্রাম</label>
+          <label class="text-[11px] text-slate-500 font-medium ml-1">বর্তমান ঠিকানা / গ্রাম (ঐচ্ছিক)</label>
           <input type="text" id="memberAddress" placeholder="গ্রাম/ওয়ার্ড, উপজেলা, জেলা" class="w-full light-input px-3.5 py-2 rounded-xl text-xs mt-0.5">
         </div>
 
@@ -141,21 +141,37 @@
         </div>
       </form>
 
-      <!-- Search & Filter Row -->
-      <div class="flex gap-2 pt-1">
-        <div class="relative flex-1">
+      <!-- Search, Role Filter & Sort Row -->
+      <div class="space-y-2 pt-1">
+        <div class="relative w-full">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-xs"></i>
           <input type="text" id="searchInput" placeholder="নাম, ফোন, পদবি বা এলাকা দিয়ে খুঁজুন..." class="w-full light-input pl-9 pr-3 py-2.5 rounded-2xl text-xs placeholder:text-slate-400 shadow-sm">
         </div>
         
-        <select id="roleFilter" class="light-input rounded-2xl px-3 text-xs text-slate-700 font-medium cursor-pointer shadow-sm">
-          <option value="all">সব পদবি</option>
-          <option value="সভাপতি">সভাপতি</option>
-          <option value="সাধারণ সম্পাদক">সাধারণ সম্পাদক</option>
-          <option value="কোষাধ্যক্ষ / ক্যাশিয়ার">কোষাধ্যক্ষ</option>
-          <option value="সাংগঠনিক সম্পাদক">সাংগঠনিক সম্পাদক</option>
-          <option value="সাধারণ সদস্য">সাধারণ সদস্য</option>
-        </select>
+        <div class="grid grid-cols-2 gap-2">
+          <!-- পদবি ফিল্টার -->
+          <select id="roleFilter" class="light-input rounded-2xl px-3 py-2 text-xs text-slate-700 font-medium cursor-pointer shadow-sm">
+            <option value="all">সব পদবি</option>
+            <option value="উপদেষ্টা">উপদেষ্টা</option>
+            <option value="সভাপতি">সভাপতি</option>
+            <option value="সহ-সভাপতি">সহ-সভাপতি</option>
+            <option value="সাধারণ সম্পাদক">সাধারণ সম্পাদক</option>
+            <option value="যুগ্ম সাধারণ সম্পাদক">যুগ্ম সাধারণ সম্পাদক</option>
+            <option value="কোষাধ্যক্ষ">কোষাধ্যক্ষ</option>
+            <option value="সাংগঠনিক সম্পাদক">সাংগঠনিক সম্পাদক</option>
+            <option value="দপ্তর সম্পাদক">দপ্তর সম্পাদক</option>
+            <option value="প্রচার সম্পাদক">প্রচার সম্পাদক</option>
+            <option value="ক্রীড়া সম্পাদক">ক্রীড়া সম্পাদক</option>
+            <option value="সাধারণ সদস্য">সাধারণ সদস্য</option>
+          </select>
+
+          <!-- শর্ট বাই অপশন -->
+          <select id="sortBy" class="light-input rounded-2xl px-3 py-2 text-xs text-slate-700 font-medium cursor-pointer shadow-sm">
+            <option value="role">পদমর্যাদা অনুযায়ী (উপদেষ্টা ➔ সদস্য)</option>
+            <option value="name">নাম অনুযায়ী (A to Z / ক-খ)</option>
+            <option value="newest">নতুন যোগ করা সদস্য আগে</option>
+          </select>
+        </div>
       </div>
 
       <!-- Members List -->
@@ -165,7 +181,7 @@
     </main>
   </div>
 
-  <!-- Club Admin Login Modal (পাসওয়ার্ড ডায়লগ) -->
+  <!-- Club Admin Login Modal -->
   <div id="loginModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="light-glass-card bg-white p-5 rounded-3xl max-w-xs w-full shadow-2xl border border-slate-100 space-y-3">
       <div class="flex justify-between items-center border-b border-slate-100 pb-2">
@@ -177,8 +193,8 @@
       <p class="text-[11px] text-slate-500">তথ্য যুক্ত বা এডিট করতে ক্লাবের ইউজারনেম ও পাসওয়ার্ড দিন:</p>
       
       <div class="space-y-2">
-        <input type="text" id="clubUser" placeholder="ইউজারনেম (ekota)" class="w-full light-input px-3 py-2 rounded-xl text-xs">
-        <input type="password" id="clubPass" placeholder="পাসওয়ার্ড (1234)" class="w-full light-input px-3 py-2 rounded-xl text-xs">
+        <input type="text" id="clubUser" placeholder="ইউজারনেম লিখুন" autocomplete="off" class="w-full light-input px-3 py-2 rounded-xl text-xs">
+        <input type="password" id="clubPass" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off" class="w-full light-input px-3 py-2 rounded-xl text-xs">
       </div>
 
       <button id="verifyLoginBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 transition">
@@ -210,10 +226,25 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // ক্লাবের উন্মুক্ত ইউজার ও পাসওয়ার্ড (প্রয়োজনে এখান থেকে পরিবর্তন করতে পারেন)
     const CLUB_AUTH = {
       username: "ekota",
       password: "1234"
+    };
+
+    // পদমর্যাদা অনুযায়ী র‍্যাঙ্কিং (শর্ট করার জন্য)
+    const roleHierarchy = {
+      "উপদেষ্টা": 1,
+      "সভাপতি": 2,
+      "সহ-সভাপতি": 3,
+      "সাধারণ সম্পাদক": 4,
+      "যুগ্ম সাধারণ সম্পাদক": 5,
+      "কোষাধ্যক্ষ": 6,
+      "কোষাধ্যক্ষ / ক্যাশিয়ার": 6,
+      "সাংগঠনিক সম্পাদক": 7,
+      "দপ্তর সম্পাদক": 8,
+      "প্রচার সম্পাদক": 9,
+      "ক্রীড়া সম্পাদক": 10,
+      "সাধারণ সদস্য": 99
     };
 
     let isAdmin = localStorage.getItem("ekota_admin_logged") === "true";
@@ -243,6 +274,7 @@
     const membersList = document.getElementById("membersList");
     const searchInput = document.getElementById("searchInput");
     const roleFilter = document.getElementById("roleFilter");
+    const sortBy = document.getElementById("sortBy");
     const statTotalMembers = document.getElementById("statTotalMembers");
     const toast = document.getElementById("toast");
     const toastMsg = document.getElementById("toastMsg");
@@ -349,7 +381,6 @@
       toggleFormText.innerText = "নতুন সদস্য যোগ";
     }
 
-    // উন্মুক্ত ডাটাবেজ লোড (লগইন ছাড়াই সবাই পড়বে)
     onSnapshot(collection(db, "ekota_public_members"), (snapshot) => {
       allMembers = [];
       snapshot.forEach((docSnap) => {
@@ -363,10 +394,12 @@
 
     searchInput.oninput = () => renderMembers();
     roleFilter.onchange = () => renderMembers();
+    sortBy.onchange = () => renderMembers();
 
     function renderMembers() {
       const qText = searchInput.value.toLowerCase();
       const filter = roleFilter.value;
+      const sortType = sortBy.value;
 
       statTotalMembers.innerText = `${allMembers.length} জন`;
 
@@ -382,7 +415,21 @@
         return true;
       });
 
-      filtered.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      // সর্টিং লজিক
+      filtered.sort((a, b) => {
+        if (sortType === "role") {
+          const rankA = roleHierarchy[a.role] || 99;
+          const rankB = roleHierarchy[b.role] || 99;
+          if (rankA !== rankB) return rankA - rankB;
+          return (a.name || "").localeCompare(b.name || "", 'bn');
+        } else if (sortType === "name") {
+          return (a.name || "").localeCompare(b.name || "", 'bn');
+        } else if (sortType === "newest") {
+          return (b.createdAt || 0) - (a.createdAt || 0);
+        }
+        return 0;
+      });
+
       membersList.innerHTML = "";
 
       if (filtered.length === 0) {
@@ -405,12 +452,21 @@
             <div>
               <div class="flex items-center gap-2">
                 <h3 class="text-sm font-bold text-slate-800">${member.name}</h3>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">${member.role}</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${member.role === 'উপদেষ্টা' ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'} border">${member.role}</span>
               </div>
-              <p class="text-xs font-semibold text-slate-600 mt-1 flex items-center gap-2">
-                <i class="fa-solid fa-phone text-emerald-600 text-[11px]"></i> ${member.phone}
-                ${member.blood ? `<span class="bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] rounded font-bold border border-rose-200">🩸 ${member.blood}</span>` : ''}
-              </p>
+              
+              ${member.phone ? `
+                <p class="text-xs font-semibold text-slate-600 mt-1 flex items-center gap-2">
+                  <i class="fa-solid fa-phone text-emerald-600 text-[11px]"></i> ${member.phone}
+                  ${member.blood ? `<span class="bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] rounded font-bold border border-rose-200">🩸 ${member.blood}</span>` : ''}
+                </p>
+              ` : `
+                <p class="text-xs text-slate-400 mt-1 flex items-center gap-2">
+                  <i class="fa-solid fa-phone-slash text-[11px]"></i> নম্বর দেওয়া নেই
+                  ${member.blood ? `<span class="bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] rounded font-bold border border-rose-200">🩸 ${member.blood}</span>` : ''}
+                </p>
+              `}
+
               ${member.address ? `
                 <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5">
                   <i class="fa-solid fa-location-dot text-slate-400"></i> ${member.address}
@@ -418,18 +474,19 @@
               ` : ''}
             </div>
 
-            <!-- Call & WhatsApp Action -->
-            <div class="flex items-center gap-1.5">
-              <a href="tel:${cleanPhone}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 flex items-center justify-center border border-emerald-200 text-xs shadow-sm transition" title="কল করুন">
-                <i class="fa-solid fa-phone"></i>
-              </a>
-              <a href="https://wa.me/88${cleanPhone}" target="_blank" class="w-8 h-8 rounded-full bg-green-50 hover:bg-green-100 text-green-600 flex items-center justify-center border border-green-200 text-sm shadow-sm transition" title="হোয়াটসঅ্যাপ">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-            </div>
+            <!-- ফোন নম্বর থাকলে Call ও WhatsApp বাটন দেখাবে -->
+            ${cleanPhone ? `
+              <div class="flex items-center gap-1.5">
+                <a href="tel:${cleanPhone}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 flex items-center justify-center border border-emerald-200 text-xs shadow-sm transition" title="কল করুন">
+                  <i class="fa-solid fa-phone"></i>
+                </a>
+                <a href="https://wa.me/88${cleanPhone}" target="_blank" class="w-8 h-8 rounded-full bg-green-50 hover:bg-green-100 text-green-600 flex items-center justify-center border border-green-200 text-sm shadow-sm transition" title="হোয়াটসঅ্যাপ">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </a>
+              </div>
+            ` : ''}
           </div>
 
-          <!-- Edit & Delete Buttons (লগইন করা থাকলে দৃশ্যমান) -->
           ${isAdmin ? `
             <div class="flex justify-end items-center gap-2 pt-2 border-t border-slate-100 text-[11px]">
               <button onclick="window.startEdit('${member.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded-xl transition text-xs font-semibold shadow-sm">
@@ -472,4 +529,4 @@
     updateAdminUI();
   </script>
 </body>
-</html>
+  </html>
