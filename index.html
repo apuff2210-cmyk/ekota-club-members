@@ -56,10 +56,17 @@
         </div>
       </div>
 
-      <!-- Admin Status / Login Button -->
-      <button id="adminLoginBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
-        <i class="fa-solid fa-lock text-emerald-600"></i> <span id="adminBtnText">ক্লাব লগইন</span>
-      </button>
+      <div class="flex items-center gap-2">
+        <!-- কার্যক্রম (ছবি) বাটন -->
+        <button id="openGalleryBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1.5" title="ক্লাবের কার্যক্রম ও ছবি">
+          <i class="fa-solid fa-camera text-emerald-600"></i> <span>কার্যক্রম</span>
+        </button>
+
+        <!-- Admin Login Button -->
+        <button id="adminLoginBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
+          <i class="fa-solid fa-lock text-emerald-600"></i> <span id="adminBtnText">ক্লাব লগইন</span>
+        </button>
+      </div>
     </header>
 
     <!-- Main Content Area -->
@@ -185,6 +192,38 @@
     </main>
   </div>
 
+  <!-- একতা ক্লাবের কার্যক্রম (ছবি পপআপ মডাল) -->
+  <div id="galleryModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="light-glass-card bg-white p-4 sm:p-5 rounded-3xl max-w-sm w-full shadow-2xl border border-slate-100 space-y-3.5 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-camera text-emerald-600"></i> একতা ক্লাবের কার্যক্রম
+        </h3>
+        <button id="closeGalleryBtn" class="text-slate-400 hover:text-slate-600 p-1 text-base">✕</button>
+      </div>
+
+      <div class="space-y-3.5">
+        <!-- ছবি ১ -->
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80" alt="ফুটবল ম্যাচ" class="w-full h-44 object-cover">
+          <div class="p-3">
+            <h4 class="text-xs font-bold text-slate-800">বার্ষিক প্রীতি ফুটবল ম্যাচ</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
+          </div>
+        </div>
+
+        <!-- ছবি ২ -->
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="ক্লাবের সদস্যবৃন্দ" class="w-full h-44 object-cover">
+          <div class="p-3">
+            <h4 class="text-xs font-bold text-slate-800">ক্লাবের সদস্যবৃন্দ</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Club Admin Login Modal -->
   <div id="loginModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="light-glass-card bg-white p-5 rounded-3xl max-w-xs w-full shadow-2xl border border-slate-100 space-y-3">
@@ -268,6 +307,14 @@
 
     let isAdmin = localStorage.getItem("ekota_admin_logged") === "true";
     let allMembers = [];
+
+    // Gallery Modal Elements
+    const openGalleryBtn = document.getElementById("openGalleryBtn");
+    const galleryModal = document.getElementById("galleryModal");
+    const closeGalleryBtn = document.getElementById("closeGalleryBtn");
+
+    openGalleryBtn.onclick = () => galleryModal.classList.remove("hidden");
+    closeGalleryBtn.onclick = () => galleryModal.classList.add("hidden");
 
     const adminLoginBtn = document.getElementById("adminLoginBtn");
     const adminBtnText = document.getElementById("adminBtnText");
@@ -412,7 +459,6 @@
       toggleFormText.innerText = "নতুন সদস্য যোগ";
     }
 
-    // অফলাইন ও অনলাইন উভয় অবস্থাতেই ডেটা রিড
     onSnapshot(collection(db, "ekota_public_members"), (snapshot) => {
       allMembers = [];
       snapshot.forEach((docSnap) => {
