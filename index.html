@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body { 
@@ -64,7 +64,7 @@
     }
     @media print {
       body { background: white !important; color: black !important; }
-      header, #noticeBox, #summaryStats, #memberForm, #controlBar, #galleryModal, #loginModal, #toast, .action-buttons { display: none !important; }
+      header, #noticeSection, #summaryStats, #memberForm, #controlBar, #galleryModal, #loginModal, #toast, .action-buttons { display: none !important; }
       .glass-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; background: white !important; }
     }
     ::-webkit-scrollbar { width: 5px; }
@@ -111,26 +111,29 @@
       <img src="banner.png" alt="একতা ক্লাব ব্যানার" class="w-full max-h-48 object-cover group-hover:scale-105 transition duration-500" onerror="this.style.display='none'">
     </div>
 
-    <!-- নোটিশ বোর্ড -->
-    <div id="noticeBox" class="glass-card p-3 rounded-2xl border-l-4 border-l-emerald-600 flex items-start justify-between gap-3 shadow-sm">
-      <div class="flex items-start gap-2.5 flex-1">
-        <i class="fa-solid fa-bullhorn text-emerald-600 dark:text-emerald-400 text-sm mt-0.5 animate-pulse"></i>
-        <div class="flex-1">
-          <p class="text-[10px] font-bold uppercase text-emerald-800 dark:text-emerald-400 tracking-wider">জরুরি বিজ্ঞপ্তি</p>
-          <p id="noticeTextDisplay" class="text-xs text-slate-700 dark:text-slate-300 font-medium mt-0.5 leading-relaxed">সকল সদস্যদের নিয়মিত উপস্থিতি ও কার্যক্রমে অংশগ্রহণের জন্য অনুরোধ জানানো হচ্ছে।</p>
-        </div>
+    <!-- নোটিশ বোর্ড সেকশন (একাধিক নোটিশ) -->
+    <div id="noticeSection" class="glass-card p-3.5 rounded-3xl space-y-2.5 shadow-sm">
+      <div class="flex justify-between items-center px-1">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-bullhorn text-emerald-600 dark:text-emerald-400 animate-pulse"></i> ক্লাবের নোটিশ বোর্ড
+        </h3>
+        <button id="showNoticeFormBtn" class="hidden text-xs bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-xl font-bold hover:bg-emerald-100 transition flex items-center gap-1">
+          <i class="fa-solid fa-plus text-[10px]"></i> নতুন নোটিশ
+        </button>
       </div>
-      <button id="editNoticeBtn" class="hidden text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs p-1" title="নোটিশ পরিবর্তন করুন">
-        <i class="fa-regular fa-pen-to-square"></i>
-      </button>
-    </div>
 
-    <!-- নোটিশ এডিট ফরম -->
-    <div id="noticeEditForm" class="hidden glass-card p-3 rounded-2xl space-y-2">
-      <input type="text" id="noticeInput" class="w-full app-input px-3 py-1.5 rounded-xl text-xs" placeholder="নতুন বিজ্ঞপ্তি লিখুন...">
-      <div class="flex justify-end gap-2">
-        <button id="cancelNoticeBtn" class="text-xs text-slate-500 px-3 py-1">বাতিল</button>
-        <button id="saveNoticeBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-1 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20">সংরক্ষণ</button>
+      <!-- নতুন নোটিশ যোগ করার ফরম -->
+      <form id="noticeAddForm" class="hidden space-y-2 pt-1 border-t border-slate-100 dark:border-slate-800">
+        <textarea id="newNoticeText" rows="2" placeholder="জরুরি নোটিশ লিখুন..." required class="w-full app-input px-3 py-2 rounded-2xl text-xs"></textarea>
+        <div class="flex justify-end gap-2">
+          <button type="button" id="cancelNoticeFormBtn" class="text-xs text-slate-500 px-3 py-1 font-medium">বাতিল</button>
+          <button type="submit" id="saveNoticeSubmitBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20">পোস্ট করুন</button>
+        </div>
+      </form>
+
+      <!-- নোটিশ তালিকা কনটেইনার -->
+      <div id="noticesList" class="space-y-2 pt-0.5">
+        <p class="text-[11px] text-slate-400 dark:text-slate-500 py-1 text-center">নোটিশ লোড হচ্ছে...</p>
       </div>
     </div>
 
@@ -378,7 +381,6 @@
       collection, 
       addDoc, 
       updateDoc, 
-      setDoc,
       onSnapshot, 
       deleteDoc, 
       doc 
@@ -423,6 +425,7 @@
 
     let isAdmin = localStorage.getItem("ekota_admin_logged") === "true";
     let allMembers = [];
+    let allNotices = [];
 
     // Dark Mode Controller
     const htmlEl = document.documentElement;
@@ -450,13 +453,12 @@
       }
     };
 
-    // নোটিশ বোর্ড
-    const noticeTextDisplay = document.getElementById("noticeTextDisplay");
-    const editNoticeBtn = document.getElementById("editNoticeBtn");
-    const noticeEditForm = document.getElementById("noticeEditForm");
-    const noticeInput = document.getElementById("noticeInput");
-    const cancelNoticeBtn = document.getElementById("cancelNoticeBtn");
-    const saveNoticeBtn = document.getElementById("saveNoticeBtn");
+    // নোটিশ বোর্ড কন্ট্রোলার
+    const noticesList = document.getElementById("noticesList");
+    const showNoticeFormBtn = document.getElementById("showNoticeFormBtn");
+    const noticeAddForm = document.getElementById("noticeAddForm");
+    const newNoticeText = document.getElementById("newNoticeText");
+    const cancelNoticeFormBtn = document.getElementById("cancelNoticeFormBtn");
 
     // ছবি আপলোড ও প্রসেসিং
     const photoInput = document.getElementById("photoInput");
@@ -506,7 +508,7 @@
     const toast = document.getElementById("toast");
     const toastMsg = document.getElementById("toastMsg");
 
-    // অটো ইমেজ অপটিমাইজার
+    // অটো ইমেজ অপটিমাইজার (Canvas ব্যবহার করে ২০-৩০ KB করা)
     photoInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -569,13 +571,15 @@
       if (isAdmin) {
         adminBtnText.innerText = "লগআউট";
         adminLoginBtn.classList.add("text-rose-600");
-        editNoticeBtn.classList.remove("hidden");
+        showNoticeFormBtn.classList.remove("hidden");
       } else {
         adminBtnText.innerText = "ক্লাব লগইন";
         adminLoginBtn.classList.remove("text-rose-600");
-        editNoticeBtn.classList.add("hidden");
+        showNoticeFormBtn.classList.add("hidden");
+        noticeAddForm.classList.add("hidden");
       }
       renderMembers();
+      renderNotices();
     }
 
     adminLoginBtn.onclick = () => {
@@ -607,30 +611,110 @@
       }
     };
 
-    editNoticeBtn.onclick = () => {
-      noticeInput.value = noticeTextDisplay.innerText;
-      noticeEditForm.classList.remove("hidden");
+    // নোটিশ ফরম হ্যান্ডলার
+    showNoticeFormBtn.onclick = () => {
+      noticeAddForm.classList.toggle("hidden");
+      newNoticeText.focus();
     };
 
-    cancelNoticeBtn.onclick = () => noticeEditForm.classList.add("hidden");
+    cancelNoticeFormBtn.onclick = () => {
+      noticeAddForm.classList.add("hidden");
+      newNoticeText.value = "";
+    };
 
-    saveNoticeBtn.onclick = async () => {
-      const txt = noticeInput.value.trim();
-      if (!txt) return;
+    noticeAddForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const text = newNoticeText.value.trim();
+      if (!text) return;
       try {
-        await setDoc(doc(db, "ekota_club_meta", "notice"), { text: txt, updatedAt: Date.now() });
-        noticeEditForm.classList.add("hidden");
-        showToast("বিজ্ঞপ্তি আপডেট হয়েছে!");
+        await addDoc(collection(db, "ekota_club_notices"), {
+          text: text,
+          createdAt: Date.now()
+        });
+        newNoticeText.value = "";
+        noticeAddForm.classList.add("hidden");
+        showToast("নতুন নোটিশ প্রকাশিত হয়েছে!");
       } catch (err) {
         alert("ত্রুটি: " + err.message);
       }
     };
 
-    onSnapshot(doc(db, "ekota_club_meta", "notice"), (snap) => {
-      if (snap.exists() && snap.data().text) {
-        noticeTextDisplay.innerText = snap.data().text;
-      }
+    // একাধিক নোটিশ রিয়েলটাইমে লোড
+    onSnapshot(collection(db, "ekota_club_notices"), (snapshot) => {
+      allNotices = [];
+      snapshot.forEach((dSnap) => {
+        allNotices.push({ id: dSnap.id, ...dSnap.data() });
+      });
+      renderNotices();
+    }, (err) => {
+      console.warn("Notice load offline:", err);
     });
+
+    function formatBnDate(timestamp) {
+      if (!timestamp) return "";
+      const d = new Date(timestamp);
+      return d.toLocaleDateString('bn-BD', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      });
+    }
+
+    function renderNotices() {
+      // নতুন নোটিশ আগে
+      allNotices.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+      if (allNotices.length === 0) {
+        noticesList.innerHTML = `
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs text-center font-medium">
+            বর্তমানে কোনো জরুরি নোটিশ নেই।
+          </div>
+        `;
+        return;
+      }
+
+      noticesList.innerHTML = "";
+      allNotices.forEach((item, index) => {
+        const itemEl = document.createElement("div");
+        itemEl.className = `p-3 rounded-2xl border transition relative flex items-start justify-between gap-2.5 ${
+          index === 0 
+            ? 'bg-emerald-50/70 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/70' 
+            : 'bg-slate-50/80 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-800'
+        }`;
+
+        itemEl.innerHTML = `
+          <div class="space-y-1 flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md ${
+                index === 0 
+                  ? 'bg-emerald-600 text-white shadow-xs' 
+                  : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+              }">${index === 0 ? 'সর্বশেষ নোটিশ' : 'নোটিশ'}</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 font-medium">${formatBnDate(item.createdAt)}</span>
+            </div>
+            <p class="text-xs text-slate-700 dark:text-slate-200 font-medium leading-relaxed whitespace-pre-wrap">${item.text}</p>
+          </div>
+
+          ${isAdmin ? `
+            <button onclick="window.deleteNotice('${item.id}')" class="text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 p-1 text-xs shrink-0 transition" title="নোটিশ মুছে ফেলুন">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          ` : ''}
+        `;
+        noticesList.appendChild(itemEl);
+      });
+    }
+
+    window.deleteNotice = async (id) => {
+      if (confirm("আপনি কি নিশ্চিত এই নোটিশটি মুছে ফেলতে চান?")) {
+        try {
+          await deleteDoc(doc(db, "ekota_club_notices", id));
+          showToast("নোটিশ মুছে ফেলা হয়েছে!");
+        } catch (err) {
+          alert("ত্রুটি: " + err.message);
+        }
+      }
+    };
 
     toggleFormBtn.onclick = () => {
       if (!isAdmin) {
@@ -784,7 +868,6 @@
         const card = document.createElement("div");
         card.className = "glass-card p-4 rounded-3xl flex flex-col gap-3 relative overflow-hidden group hover:border-emerald-500/40";
 
-        // রোল ব্যাজের কালার থিম
         let roleBadgeClass = "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800";
         if (member.role === "উপদেষ্টা" || member.role === "সভাপতি") {
           roleBadgeClass = "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300 border-amber-300 dark:border-amber-800";
@@ -834,7 +917,6 @@
                 </span>
               ` : ''}
 
-              <!-- অ্যাকশন বাটন -->
               ${cleanPhone ? `
                 <div class="flex items-center gap-1.5 action-buttons">
                   <a href="tel:${cleanPhone}" class="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-200 dark:border-emerald-800 text-xs shadow-sm transition active:scale-95" title="কল করুন">
