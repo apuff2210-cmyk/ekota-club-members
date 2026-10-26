@@ -2,7 +2,7 @@
 <html lang="bn" class="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>একতা ক্লাব সদস্যবৃন্দ</title>
   <meta name="theme-color" content="#059669">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,6 +19,7 @@
     body { 
       font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; 
       transition: background-color 0.3s ease, color 0.3s ease;
+      touch-action: manipulation;
     }
     .light body {
       background: radial-gradient(circle at top left, #f0fdf4, #f8fafc 50%, #e2e8f0 100%);
@@ -34,14 +35,14 @@
       transition: all 0.25s ease;
     }
     .light .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.85);
       box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 4px 10px -2px rgba(15, 23, 42, 0.02);
     }
     .dark .glass-card {
-      background: rgba(30, 41, 59, 0.85);
+      background: rgba(30, 41, 59, 0.9);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -64,7 +65,7 @@
     }
     @media print {
       body { background: white !important; color: black !important; }
-      header, #noticeSection, #summaryStats, #memberForm, #controlBar, #galleryModal, #loginModal, #toast, .action-buttons { display: none !important; }
+      header, #noticeSection, #summaryStats, #memberForm, #controlBar, #galleryModal, #loginModal, #gameModal, #toast, .action-buttons { display: none !important; }
       .glass-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; background: white !important; }
     }
     ::-webkit-scrollbar { width: 5px; }
@@ -88,20 +89,25 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- ফুটবল খেলা বাটন -->
+        <button id="openGameBtn" class="bg-amber-500 hover:bg-amber-600 active:scale-95 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md shadow-amber-500/30 transition flex items-center gap-1 animate-bounce" title="ফুটবল জাগলিং চ্যালেঞ্জ">
+          <span>⚽</span> <span>খেলা</span>
+        </button>
+
         <!-- Dark Mode Toggle -->
-        <button id="themeToggleBtn" class="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition" title="ডার্ক/লাইট মোড">
-          <i id="themeIcon" class="fa-solid fa-moon"></i>
+        <button id="themeToggleBtn" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm active:scale-95 transition" title="ডার্ক/লাইট মোড">
+          <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
         </button>
 
         <!-- Gallery Button -->
-        <button id="openGalleryBtn" class="bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 px-2.5 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1.5" title="ক্লাবের কার্যক্রম ও ছবি">
+        <button id="openGalleryBtn" class="bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 px-2 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1" title="ক্লাবের কার্যক্রম ও ছবি">
           <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> <span class="hidden sm:inline">কার্যক্রম</span>
         </button>
 
         <!-- Admin Login Button -->
-        <button id="adminLoginBtn" class="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
-          <i class="fa-solid fa-lock text-emerald-600 dark:text-emerald-400"></i> <span id="adminBtnText">ক্লাব লগইন</span>
+        <button id="adminLoginBtn" class="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1">
+          <i class="fa-solid fa-lock text-emerald-600 dark:text-emerald-400"></i> <span id="adminBtnText" class="hidden sm:inline">ক্লাব লগইন</span>
         </button>
       </div>
     </header>
@@ -131,7 +137,7 @@
         </div>
       </form>
 
-      <!-- নোটিশ তালিকা কনটেইনার -->
+      <!-- নোটিশ তালিকা -->
       <div id="noticesList" class="space-y-2 pt-0.5">
         <p class="text-[11px] text-slate-400 dark:text-slate-500 py-1 text-center">নোটিশ লোড হচ্ছে...</p>
       </div>
@@ -159,7 +165,6 @@
           </div>
         </div>
 
-        <!-- পদের সারসংক্ষেপ ব্যাজ -->
         <div class="flex flex-wrap gap-1.5 border-t border-slate-100 dark:border-slate-800/80 pt-2 text-[10px]">
           <span class="bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800/60 px-2.5 py-0.5 rounded-lg font-bold">উপদেষ্টা: <span id="statAdvisor">০</span></span>
           <span class="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 px-2.5 py-0.5 rounded-lg font-bold">কার্যনির্বাহী: <span id="statExecutive">০</span></span>
@@ -179,14 +184,13 @@
         <input type="hidden" id="editMemberId" value="">
         <input type="hidden" id="memberPhotoBase64" value="">
 
-        <!-- ছবি আপলোড ও প্রিভিউ সেকশন -->
         <div class="flex items-center gap-3.5 bg-slate-50/70 dark:bg-slate-800/50 p-2.5 rounded-2xl border border-slate-200/70 dark:border-slate-700">
           <div id="photoPreview" class="w-14 h-14 rounded-2xl bg-slate-200 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 flex items-center justify-center text-xl text-slate-400 overflow-hidden shrink-0 shadow-sm">
             <i class="fa-solid fa-user"></i>
           </div>
           <div class="flex-1">
             <label class="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">সদস্যের ছবি (গ্যালারি বা ক্যামেরা)</label>
-            <p class="text-[10px] text-slate-500 dark:text-slate-400">যে কেউ নিজের বা অন্য সদস্যের ছবি আপলোড করতে পারবেন</p>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400">যেকোনো সাইজের ছবি স্বয়ংক্রিয়ভাবে ছোট হয়ে যাবে</p>
             <div class="flex items-center gap-2 mt-1">
               <label class="cursor-pointer bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-xl text-[11px] font-bold shadow-sm transition inline-flex items-center gap-1">
                 <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> ছবি বাছুন
@@ -261,7 +265,6 @@
         </div>
         
         <div class="grid grid-cols-3 gap-2">
-          <!-- পদবি -->
           <select id="roleFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer shadow-sm">
             <option value="all">সব পদবি</option>
             <option value="উপদেষ্টা">উপদেষ্টা</option>
@@ -277,7 +280,6 @@
             <option value="সাধারণ সদস্য">সাধারণ সদস্য</option>
           </select>
 
-          <!-- রক্তের গ্রুপ -->
           <select id="bloodFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer shadow-sm">
             <option value="all">সব রক্ত 🩸</option>
             <option value="A+">A+</option>
@@ -290,7 +292,6 @@
             <option value="O-">O-</option>
           </select>
 
-          <!-- সর্ট -->
           <select id="sortBy" class="app-input rounded-2xl px-2 py-2 text-xs font-medium cursor-pointer shadow-sm">
             <option value="role">পদমর্যাদা</option>
             <option value="name">নাম (A-Z)</option>
@@ -304,6 +305,85 @@
         <p class="text-slate-400 text-center text-sm py-8 font-medium">লোড হচ্ছে...</p>
       </div>
     </main>
+  </div>
+
+  <!-- ফুটবল খেলা মডাল (বড় স্ক্রিন ও আরামদায়ক ভিউ) -->
+  <div id="gameModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
+    <div class="glass-card bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-3 max-h-[96vh] overflow-y-auto">
+      
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">⚽</span>
+          <div>
+            <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 leading-tight">ফুটবল জাগলিং চ্যালেঞ্জ</h3>
+            <p class="text-[10px] text-slate-500">স্ক্রিনের যেকোনো জায়গায় ট্যাপ করে বল ভাসিয়ে রাখুন</p>
+          </div>
+        </div>
+        <button id="closeGameBtn" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-500 hover:text-rose-600 flex items-center justify-center font-bold text-sm">✕</button>
+      </div>
+
+      <!-- গেম ক্যানভাস এরিয়া (বড় ডিসপ্লে) -->
+      <div class="relative w-full rounded-2xl overflow-hidden border-2 border-emerald-500/40 bg-gradient-to-b from-sky-400 via-sky-200 to-emerald-600 shadow-inner flex flex-col items-center select-none" style="touch-action: none;">
+        
+        <!-- লাইভ স্কোরবোর্ড ওভারলে -->
+        <div class="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none z-10">
+          <div class="bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20">
+            কিক: <span id="currentScoreDisplay" class="text-amber-300 text-base font-black">০</span>
+          </div>
+          <div class="bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20">
+            সর্বোচ্চ: <span id="highScoreDisplay" class="text-emerald-300 text-base font-black">০</span>
+          </div>
+        </div>
+
+        <!-- বড় সাইজের ক্যানভাস -->
+        <canvas id="footballCanvas" width="360" height="420" class="w-full h-[360px] sm:h-[420px] block cursor-pointer"></canvas>
+
+        <!-- খেলা শুরুর মেসেজ -->
+        <div id="gameStartOverlay" class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-4 z-20">
+          <div class="w-16 h-16 rounded-full bg-white/90 shadow-xl flex items-center justify-center text-3xl mb-2 animate-bounce">
+            ⚽
+          </div>
+          <h4 class="text-base font-black text-white drop-shadow-md">ট্যাপ করে খেলা শুরু করুন</h4>
+          <p class="text-xs text-white/90 mt-1 max-w-[240px]">বল নিচে পড়ার আগে স্ক্রিনের যেকোনো জায়গায় ট্যাপ করে কিক মারুন!</p>
+          <button id="startPlayBtn" class="mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-2.5 rounded-2xl shadow-lg active:scale-95 transition text-sm">
+            খেলা শুরু
+          </button>
+        </div>
+
+        <!-- গেম ওভার ওভারলে -->
+        <div id="gameOverOverlay" class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 z-20 hidden">
+          <div class="text-3xl mb-1">🏁</div>
+          <h4 class="text-lg font-black text-rose-400">আউট! বল মাটিতে পড়েছে</h4>
+          <p class="text-white text-xs mt-0.5">আপনার মোট কিক স্কোর:</p>
+          <div id="finalScoreVal" class="text-4xl font-black text-amber-300 my-1">০</div>
+
+          <!-- নাম দিয়ে স্কোর সেভ -->
+          <div class="w-full max-w-[260px] space-y-2 mt-2">
+            <input type="text" id="playerNameInput" placeholder="আপনার নাম লিখুন..." class="w-full app-input px-3 py-1.5 rounded-xl text-xs text-center font-bold">
+            <div class="flex gap-2">
+              <button id="submitScoreBtn" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-1.5 rounded-xl text-xs shadow-md transition active:scale-95">
+                🏆 স্কোর জমা দিন
+              </button>
+              <button id="restartGameBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 rounded-xl text-xs shadow-md transition active:scale-95">
+                আবার খেলুন 🔄
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ক্লাবের শীর্ষ স্কোরার লিডারবোর্ড -->
+      <div class="border-t border-slate-100 dark:border-slate-800 pt-2 space-y-1.5">
+        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-500"></i> সেরা ৫ স্কোরার</span>
+          <span class="text-[10px] text-slate-400 font-normal">একতা ক্লাব লিডারবোর্ড</span>
+        </h4>
+        <div id="leaderboardList" class="space-y-1 max-h-32 overflow-y-auto pr-1">
+          <p class="text-[11px] text-slate-400 text-center py-2">স্কোর লোড হচ্ছে...</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- একতা ক্লাবের কার্যক্রম (ছবি পপআপ) -->
@@ -426,6 +506,7 @@
     let isAdmin = localStorage.getItem("ekota_admin_logged") === "true";
     let allMembers = [];
     let allNotices = [];
+    let allLeaderboard = [];
 
     // Dark Mode Controller
     const htmlEl = document.documentElement;
@@ -453,20 +534,20 @@
       }
     };
 
-    // নোটিশ বোর্ড কন্ট্রোলার
+    // নোটিশ কন্ট্রোলার
     const noticesList = document.getElementById("noticesList");
     const showNoticeFormBtn = document.getElementById("showNoticeFormBtn");
     const noticeAddForm = document.getElementById("noticeAddForm");
     const newNoticeText = document.getElementById("newNoticeText");
     const cancelNoticeFormBtn = document.getElementById("cancelNoticeFormBtn");
 
-    // ছবি আপলোড ও প্রসেসিং
+    // ছবি প্রসেসিং
     const photoInput = document.getElementById("photoInput");
     const photoPreview = document.getElementById("photoPreview");
     const memberPhotoBase64 = document.getElementById("memberPhotoBase64");
     const removePhotoBtn = document.getElementById("removePhotoBtn");
 
-    // গ্যালারি মডাল
+    // গ্যালারি
     const openGalleryBtn = document.getElementById("openGalleryBtn");
     const galleryModal = document.getElementById("galleryModal");
     const closeGalleryBtn = document.getElementById("closeGalleryBtn");
@@ -508,7 +589,7 @@
     const toast = document.getElementById("toast");
     const toastMsg = document.getElementById("toastMsg");
 
-    // অটো ইমেজ অপটিমাইজার (Canvas ব্যবহার করে ২০-৩০ KB করা)
+    // ইমেজ কম্প্রেসার
     photoInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -611,7 +692,6 @@
       }
     };
 
-    // নোটিশ ফরম হ্যান্ডলার
     showNoticeFormBtn.onclick = () => {
       noticeAddForm.classList.toggle("hidden");
       newNoticeText.focus();
@@ -639,7 +719,6 @@
       }
     };
 
-    // একাধিক নোটিশ রিয়েলটাইমে লোড
     onSnapshot(collection(db, "ekota_club_notices"), (snapshot) => {
       allNotices = [];
       snapshot.forEach((dSnap) => {
@@ -647,7 +726,7 @@
       });
       renderNotices();
     }, (err) => {
-      console.warn("Notice load offline:", err);
+      console.warn("Notice offline:", err);
     });
 
     function formatBnDate(timestamp) {
@@ -661,7 +740,6 @@
     }
 
     function renderNotices() {
-      // নতুন নোটিশ আগে
       allNotices.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
       if (allNotices.length === 0) {
@@ -795,7 +873,7 @@
       });
       renderMembers();
     }, (err) => {
-      console.warn("Firestore snapshot error (working offline):", err);
+      console.warn("Members offline:", err);
     });
 
     searchInput.oninput = () => renderMembers();
@@ -977,6 +1055,287 @@
         showToast("সদস্য মুছে ফেলা হয়েছে!");
       }
     };
+
+    // ============================================
+    // ফুটবল জাগলিং চ্যালেঞ্জ (সহজ ও আরামদায়ক ফুলস্ক্রিন ইঞ্জিন)
+    // ============================================
+    const openGameBtn = document.getElementById("openGameBtn");
+    const closeGameBtn = document.getElementById("closeGameBtn");
+    const gameModal = document.getElementById("gameModal");
+    const canvas = document.getElementById("footballCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const gameStartOverlay = document.getElementById("gameStartOverlay");
+    const gameOverOverlay = document.getElementById("gameOverOverlay");
+    const startPlayBtn = document.getElementById("startPlayBtn");
+    const restartGameBtn = document.getElementById("restartGameBtn");
+    const submitScoreBtn = document.getElementById("submitScoreBtn");
+    const playerNameInput = document.getElementById("playerNameInput");
+    const currentScoreDisplay = document.getElementById("currentScoreDisplay");
+    const highScoreDisplay = document.getElementById("highScoreDisplay");
+    const finalScoreVal = document.getElementById("finalScoreVal");
+    const leaderboardList = document.getElementById("leaderboardList");
+
+    let isGameRunning = false;
+    let score = 0;
+    let localHighScore = parseInt(localStorage.getItem("ekota_juggle_high") || "0", 10);
+    highScoreDisplay.innerText = localHighScore;
+
+    // বলের প্রোপার্টিজ (আকার বড় ও আরামদায়ক গ্র্যাভিটি)
+    let ball = {
+      x: 180,
+      y: 180,
+      radius: 34,        // বড় বল
+      vx: 0,
+      vy: 0,
+      gravity: 0.28,     // নরম গ্র্যাভিটি, বল ধীরে পড়বে
+      rotation: 0
+    };
+
+    let animationFrameId = null;
+
+    function resizeGameCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width || 360;
+      canvas.height = rect.height || 420;
+    }
+
+    openGameBtn.onclick = () => {
+      gameModal.classList.remove("hidden");
+      setTimeout(() => {
+        resizeGameCanvas();
+        resetBall();
+        drawScene();
+      }, 50);
+    };
+
+    closeGameBtn.onclick = () => {
+      stopGame();
+      gameModal.classList.add("hidden");
+    };
+
+    function resetBall() {
+      ball.x = canvas.width / 2;
+      ball.y = canvas.height * 0.42;
+      ball.vx = 0;
+      ball.vy = -3;
+      ball.rotation = 0;
+    }
+
+    function startGame() {
+      resizeGameCanvas();
+      isGameRunning = true;
+      score = 0;
+      currentScoreDisplay.innerText = "০";
+      gameStartOverlay.classList.add("hidden");
+      gameOverOverlay.classList.add("hidden");
+      resetBall();
+      
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      gameLoop();
+    }
+
+    startPlayBtn.onclick = startGame;
+    restartGameBtn.onclick = startGame;
+
+    function stopGame() {
+      isGameRunning = false;
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    }
+
+    function handleKick() {
+      if (!isGameRunning) {
+        startGame();
+        return;
+      }
+
+      // বলের ওপর হালকা আপওয়ার্ড পুশ
+      ball.vy = -10.5; // বল লাফিয়ে উপরে উঠবে
+      // বল এদিক-সেদিক একটু দুলবে যাতে জীবন্ত মনে হয়
+      ball.vx = (Math.random() - 0.5) * 4; 
+      ball.rotation += 0.35;
+
+      score++;
+      currentScoreDisplay.innerText = score;
+
+      if (score > localHighScore) {
+        localHighScore = score;
+        localStorage.setItem("ekota_juggle_high", localHighScore);
+        highScoreDisplay.innerText = localHighScore;
+      }
+    }
+
+    // ক্যানভাসে ট্যাপ বা ক্লিক
+    function onCanvasTouch(e) {
+      e.preventDefault();
+      handleKick();
+    }
+
+    canvas.addEventListener("touchstart", onCanvasTouch, { passive: false });
+    canvas.addEventListener("mousedown", onCanvasTouch);
+
+    function gameLoop() {
+      if (!isGameRunning) return;
+
+      // ফিজিক্স আপডেট
+      ball.vy += ball.gravity;
+      ball.y += ball.vy;
+      ball.x += ball.vx;
+
+      // পাশের দেওয়ালে বাউন্স
+      if (ball.x - ball.radius < 5) {
+        ball.x = ball.radius + 5;
+        ball.vx *= -0.7;
+      } else if (ball.x + ball.radius > canvas.width - 5) {
+        ball.x = canvas.width - ball.radius - 5;
+        ball.vx *= -0.7;
+      }
+
+      // নিচে মাটিতে পড়লে আউট
+      const groundY = canvas.height - 35;
+      if (ball.y + ball.radius >= groundY) {
+        ball.y = groundY - ball.radius;
+        endGame();
+        return;
+      }
+
+      drawScene();
+      animationFrameId = requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+      stopGame();
+      finalScoreVal.innerText = score;
+      gameOverOverlay.classList.remove("hidden");
+      drawScene();
+    }
+
+    function drawScene() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // ঘাসের গ্রাউন্ড
+      const groundY = canvas.height - 35;
+      ctx.fillStyle = "#15803d";
+      ctx.fillRect(0, groundY, canvas.width, 35);
+      
+      // ঘাসের ওপর সাদা দাগ
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(canvas.width, groundY);
+      ctx.stroke();
+
+      // বলের ছায়া
+      const shadowScale = Math.max(0.3, 1 - (groundY - ball.y) / canvas.height);
+      ctx.save();
+      ctx.beginPath();
+      ctx.ellipse(ball.x, groundY + 4, ball.radius * shadowScale, (ball.radius / 3.5) * shadowScale, 0, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(0, 0, 0, 0.28)";
+      ctx.fill();
+      ctx.restore();
+
+      // ফুটবল অঙ্কন
+      ctx.save();
+      ctx.translate(ball.x, ball.y);
+      ctx.rotate(ball.rotation);
+
+      // বলের মূল বৃত্ত
+      ctx.beginPath();
+      ctx.arc(0, 0, ball.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#0f172a";
+      ctx.stroke();
+
+      // ক্লাসিক ফুটবল প্যাচ (পেন্টাগন)
+      ctx.fillStyle = "#1e293b";
+      ctx.beginPath();
+      for (let i = 0; i < 5; i++) {
+        const ang = (i * 2 * Math.PI) / 5 - Math.PI / 2;
+        const px = Math.cos(ang) * (ball.radius * 0.42);
+        const py = Math.sin(ang) * (ball.radius * 0.42);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // ছোট কালো সাইড ডট
+      for (let i = 0; i < 5; i++) {
+        const ang = (i * 2 * Math.PI) / 5;
+        const px = Math.cos(ang) * (ball.radius * 0.72);
+        const py = Math.sin(ang) * (ball.radius * 0.72);
+        ctx.beginPath();
+        ctx.arc(px, py, ball.radius * 0.16, 0, Math.PI * 2);
+        ctx.fillStyle = "#1e293b";
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    // লিডারবোর্ড সিঙ্ক
+    submitScoreBtn.onclick = async () => {
+      const name = playerNameInput.value.trim();
+      if (!name) {
+        alert("অনুগ্রহ করে আপনার নাম লিখুন!");
+        return;
+      }
+      if (score <= 0) {
+        alert("অন্তত ১টি কিক স্কোর করতে হবে!");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "ekota_football_scores"), {
+          name: name,
+          score: score,
+          timestamp: Date.now()
+        });
+        showToast("স্কোর লিডারবোর্ডে যুক্ত হয়েছে! 🏆");
+        playerNameInput.value = "";
+        startGame();
+      } catch (err) {
+        alert("ত্রুটি: " + err.message);
+      }
+    };
+
+    onSnapshot(collection(db, "ekota_football_scores"), (snapshot) => {
+      allLeaderboard = [];
+      snapshot.forEach(d => allLeaderboard.push(d.data()));
+      renderLeaderboard();
+    }, (err) => {
+      console.warn("Leaderboard offline:", err);
+    });
+
+    function renderLeaderboard() {
+      allLeaderboard.sort((a, b) => (b.score || 0) - (a.score || 0));
+      const top5 = allLeaderboard.slice(0, 5);
+
+      if (top5.length === 0) {
+        leaderboardList.innerHTML = `<p class="text-[11px] text-slate-400 text-center py-1">এখনও কেউ স্কোর জমা দেয়নি। প্রথম স্কোর করুন!</p>`;
+        return;
+      }
+
+      leaderboardList.innerHTML = "";
+      top5.forEach((item, idx) => {
+        const medals = ["🥇", "🥈", "🥉", "৪.", "৫."];
+        const row = document.createElement("div");
+        row.className = "flex justify-between items-center text-xs py-1 px-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800";
+        row.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="font-bold">${medals[idx] || (idx+1)+'.'}</span>
+            <span class="font-bold text-slate-700 dark:text-slate-200">${item.name}</span>
+          </div>
+          <span class="font-black text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-md text-[11px]">
+            ${item.score} কিক
+          </span>
+        `;
+        leaderboardList.appendChild(row);
+      });
+    }
 
     updateAdminUI();
   </script>
