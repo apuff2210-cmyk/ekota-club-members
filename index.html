@@ -1,158 +1,192 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>একতা ক্লাব সদস্যবৃন্দ</title>
   <meta name="theme-color" content="#059669">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body { 
       font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; 
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .light body {
       background: radial-gradient(circle at top left, #f0fdf4, #f8fafc 50%, #e2e8f0 100%);
       background-attachment: fixed;
-      color: #1e293b;
+      color: #0f172a;
     }
-    .light-glass-card {
+    .dark body {
+      background: radial-gradient(circle at top left, #064e3b, #0f172a 50%, #020617 100%);
+      background-attachment: fixed;
+      color: #f8fafc;
+    }
+    .glass-card {
+      transition: all 0.25s ease;
+    }
+    .light .glass-card {
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 4px 10px -2px rgba(15, 23, 42, 0.02);
     }
-    .light-input {
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+    }
+    .light .app-input {
       background: #ffffff;
       border: 1px solid #cbd5e1;
       color: #0f172a;
-      transition: all 0.2s ease;
     }
-    .light-input:focus {
+    .dark .app-input {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+    }
+    .app-input:focus {
       border-color: #059669;
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
       outline: none;
     }
     @media print {
-      body { background: white !important; }
+      body { background: white !important; color: black !important; }
       header, #noticeBox, #summaryStats, #memberForm, #controlBar, #galleryModal, #loginModal, #toast, .action-buttons { display: none !important; }
-      .light-glass-card { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+      .glass-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; background: white !important; }
     }
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
   </style>
 </head>
 <body class="min-h-screen p-3 sm:p-5 flex flex-col items-center pb-24 selection:bg-emerald-500 selection:text-white">
-  <div class="w-full max-w-xl space-y-3">
+  <div class="w-full max-w-xl space-y-3.5">
     <!-- Header -->
     <header class="flex justify-between items-center py-2 px-1">
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-2xl overflow-hidden bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-600/25 border border-emerald-500/30">
+        <div class="w-12 h-12 rounded-2xl overflow-hidden bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-600/30 border border-emerald-400/30">
           <img src="banner.png" alt="Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='banner.jpg'; this.parentElement.innerHTML='👥';">
         </div>
         <div>
-          <h1 class="text-lg font-extrabold tracking-tight text-slate-800 flex items-center gap-2">
+          <h1 class="text-lg font-extrabold tracking-tight text-slate-800 dark:text-slate-100 flex items-center gap-2">
             একতা ক্লাব
-            <span class="text-[10px] uppercase font-bold tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-200">সদস্যবৃন্দ</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">সদস্যবৃন্দ</span>
           </h1>
-          <p class="text-[11px] text-slate-500 font-medium">নাম, পদবি ও মোবাইল ডিরেক্টরি</p>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">স্মার্ট মোবাইল ডিরেক্টরি</p>
         </div>
       </div>
 
       <div class="flex items-center gap-2">
-        <button id="openGalleryBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1.5" title="ক্লাবের কার্যক্রম ও ছবি">
-          <i class="fa-solid fa-camera text-emerald-600"></i> <span>কার্যক্রম</span>
+        <!-- Dark Mode Toggle -->
+        <button id="themeToggleBtn" class="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition" title="ডার্ক/লাইট মোড">
+          <i id="themeIcon" class="fa-solid fa-moon"></i>
         </button>
 
-        <button id="adminLoginBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
-          <i class="fa-solid fa-lock text-emerald-600"></i> <span id="adminBtnText">ক্লাব লগইন</span>
+        <!-- Gallery Button -->
+        <button id="openGalleryBtn" class="bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 px-2.5 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1.5" title="ক্লাবের কার্যক্রম ও ছবি">
+          <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> <span class="hidden sm:inline">কার্যক্রম</span>
+        </button>
+
+        <!-- Admin Login Button -->
+        <button id="adminLoginBtn" class="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
+          <i class="fa-solid fa-lock text-emerald-600 dark:text-emerald-400"></i> <span id="adminBtnText">ক্লাব লগইন</span>
         </button>
       </div>
     </header>
 
     <!-- ব্যানার -->
-    <div class="rounded-3xl overflow-hidden shadow-md border border-slate-200/80 bg-white">
-      <img src="banner.png" alt="একতা ক্লাব ব্যানার" class="w-full max-h-48 object-cover" onerror="this.style.display='none'">
+    <div class="rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 group relative">
+      <img src="banner.png" alt="একতা ক্লাব ব্যানার" class="w-full max-h-48 object-cover group-hover:scale-105 transition duration-500" onerror="this.style.display='none'">
     </div>
 
     <!-- নোটিশ বোর্ড -->
-    <div id="noticeBox" class="light-glass-card p-3 rounded-2xl border-l-4 border-l-emerald-600 flex items-start justify-between gap-3 shadow-sm">
+    <div id="noticeBox" class="glass-card p-3 rounded-2xl border-l-4 border-l-emerald-600 flex items-start justify-between gap-3 shadow-sm">
       <div class="flex items-start gap-2.5 flex-1">
-        <i class="fa-solid fa-bullhorn text-emerald-600 text-sm mt-0.5 animate-pulse"></i>
+        <i class="fa-solid fa-bullhorn text-emerald-600 dark:text-emerald-400 text-sm mt-0.5 animate-pulse"></i>
         <div class="flex-1">
-          <p class="text-[10px] font-bold uppercase text-emerald-800 tracking-wider">জরুরি বিজ্ঞপ্তি</p>
-          <p id="noticeTextDisplay" class="text-xs text-slate-700 font-medium mt-0.5 leading-relaxed">সকল সদস্যদের নিয়মিত উপস্থিতি ও ক্লাবের কার্যক্রমে সক্রিয় অংশগ্রহণের জন্য অনুরোধ জানানো হচ্ছে।</p>
+          <p class="text-[10px] font-bold uppercase text-emerald-800 dark:text-emerald-400 tracking-wider">জরুরি বিজ্ঞপ্তি</p>
+          <p id="noticeTextDisplay" class="text-xs text-slate-700 dark:text-slate-300 font-medium mt-0.5 leading-relaxed">সকল সদস্যদের নিয়মিত উপস্থিতি ও কার্যক্রমে অংশগ্রহণের জন্য অনুরোধ জানানো হচ্ছে।</p>
         </div>
       </div>
-      <button id="editNoticeBtn" class="hidden text-slate-400 hover:text-emerald-700 text-xs p-1" title="নোটিশ পরিবর্তন করুন">
+      <button id="editNoticeBtn" class="hidden text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs p-1" title="নোটিশ পরিবর্তন করুন">
         <i class="fa-regular fa-pen-to-square"></i>
       </button>
     </div>
 
     <!-- নোটিশ এডিট ফরম -->
-    <div id="noticeEditForm" class="hidden light-glass-card p-3 rounded-2xl space-y-2">
-      <input type="text" id="noticeInput" class="w-full light-input px-3 py-1.5 rounded-xl text-xs" placeholder="নতুন বিজ্ঞপ্তি লিখুন...">
+    <div id="noticeEditForm" class="hidden glass-card p-3 rounded-2xl space-y-2">
+      <input type="text" id="noticeInput" class="w-full app-input px-3 py-1.5 rounded-xl text-xs" placeholder="নতুন বিজ্ঞপ্তি লিখুন...">
       <div class="flex justify-end gap-2">
         <button id="cancelNoticeBtn" class="text-xs text-slate-500 px-3 py-1">বাতিল</button>
-        <button id="saveNoticeBtn" class="bg-emerald-600 text-white px-3.5 py-1 rounded-xl text-xs font-bold">সংরক্ষণ</button>
+        <button id="saveNoticeBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-1 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20">সংরক্ষণ</button>
       </div>
     </div>
 
-    <!-- Main Area -->
+    <!-- Main Content Area -->
     <main class="space-y-4">
       <!-- স্ট্যাটিস্টিক্স ও কুইক সামারি -->
-      <div id="summaryStats" class="light-glass-card p-3.5 rounded-2xl shadow-sm space-y-3">
+      <div id="summaryStats" class="glass-card p-3.5 rounded-3xl shadow-sm space-y-3">
         <div class="flex justify-between items-center px-1">
           <div>
-            <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
               মোট সদস্যবৃন্দ
-              <span id="offlineBadge" class="hidden text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-md font-bold">অফলাইন</span>
+              <span id="offlineBadge" class="hidden text-[9px] bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 px-1.5 py-0.5 rounded-md font-bold">অফলাইন</span>
             </p>
-            <h3 id="statTotalMembers" class="text-xl font-extrabold text-emerald-700">০ জন</h3>
+            <h3 id="statTotalMembers" class="text-2xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight">০ জন</h3>
           </div>
           <div class="flex items-center gap-2">
-            <button type="button" onclick="window.print()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm" title="তালিকা ডাউনলোড বা প্রিন্ট">
+            <button type="button" onclick="window.print()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm" title="তালিকা ডাউনলোড বা প্রিন্ট">
               <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">প্রিন্ট / PDF</span>
             </button>
-            <button type="button" id="toggleFormBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20">
+            <button type="button" id="toggleFormBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/25 active:scale-95">
               <i class="fa-solid fa-user-plus"></i> <span id="toggleFormText">নতুন সদস্য যোগ</span>
             </button>
           </div>
         </div>
 
         <!-- পদের সারসংক্ষেপ ব্যাজ -->
-        <div class="flex flex-wrap gap-1.5 border-t border-slate-100 pt-2 text-[10px]">
-          <span class="bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-lg font-bold">উপদেষ্টা: <span id="statAdvisor">০</span></span>
-          <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-lg font-bold">কার্যনির্বাহী: <span id="statExecutive">০</span></span>
-          <span class="bg-blue-50 text-blue-800 border border-blue-200 px-2 py-0.5 rounded-lg font-bold">সাধারণ সদস্য: <span id="statGeneral">০</span></span>
+        <div class="flex flex-wrap gap-1.5 border-t border-slate-100 dark:border-slate-800/80 pt-2 text-[10px]">
+          <span class="bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800/60 px-2.5 py-0.5 rounded-lg font-bold">উপদেষ্টা: <span id="statAdvisor">০</span></span>
+          <span class="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 px-2.5 py-0.5 rounded-lg font-bold">কার্যনির্বাহী: <span id="statExecutive">০</span></span>
+          <span class="bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60 px-2.5 py-0.5 rounded-lg font-bold">সাধারণ সদস্য: <span id="statGeneral">০</span></span>
         </div>
       </div>
 
       <!-- Add/Edit Member Form -->
-      <form id="memberForm" class="light-glass-card p-4 rounded-3xl shadow-xl space-y-3 hidden">
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-            <i class="fa-solid fa-id-card text-emerald-600"></i> <span id="formTitle">সদস্যের তথ্য ফরম</span>
+      <form id="memberForm" class="glass-card p-4 rounded-3xl shadow-xl space-y-3.5 hidden">
+        <div class="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-2">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-id-card text-emerald-600 dark:text-emerald-400"></i> <span id="formTitle">সদস্যের তথ্য ফরম</span>
           </h2>
-          <button type="button" id="cancelEditBtn" class="text-xs text-slate-500 hover:text-slate-800 font-medium">বাতিল</button>
+          <button type="button" id="cancelEditBtn" class="text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-medium">বাতিল</button>
         </div>
 
         <input type="hidden" id="editMemberId" value="">
         <input type="hidden" id="memberPhotoBase64" value="">
 
         <!-- ছবি আপলোড ও প্রিভিউ সেকশন -->
-        <div class="flex items-center gap-3.5 bg-slate-50/70 p-2.5 rounded-2xl border border-slate-200/70">
-          <div id="photoPreview" class="w-14 h-14 rounded-2xl bg-slate-200 border border-slate-300 flex items-center justify-center text-xl text-slate-400 overflow-hidden shrink-0 shadow-sm">
+        <div class="flex items-center gap-3.5 bg-slate-50/70 dark:bg-slate-800/50 p-2.5 rounded-2xl border border-slate-200/70 dark:border-slate-700">
+          <div id="photoPreview" class="w-14 h-14 rounded-2xl bg-slate-200 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 flex items-center justify-center text-xl text-slate-400 overflow-hidden shrink-0 shadow-sm">
             <i class="fa-solid fa-user"></i>
           </div>
           <div class="flex-1">
-            <label class="text-[11px] font-bold text-slate-700 block">সদস্যের ছবি (গ্যালারি বা ক্যামেরা)</label>
-            <p class="text-[10px] text-slate-500">যে কেউ নিজের বা অন্য সদস্যের ছবি আপলোড করতে পারবেন</p>
+            <label class="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">সদস্যের ছবি (গ্যালারি বা ক্যামেরা)</label>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400">যে কেউ নিজের বা অন্য সদস্যের ছবি আপলোড করতে পারবেন</p>
             <div class="flex items-center gap-2 mt-1">
-              <label class="cursor-pointer bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-xl text-[11px] font-bold shadow-sm transition inline-flex items-center gap-1">
-                <i class="fa-solid fa-camera text-emerald-600"></i> ছবি বাছুন
+              <label class="cursor-pointer bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-xl text-[11px] font-bold shadow-sm transition inline-flex items-center gap-1">
+                <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> ছবি বাছুন
                 <input type="file" id="photoInput" accept="image/*" class="hidden">
               </label>
               <button type="button" id="removePhotoBtn" class="hidden text-rose-500 hover:text-rose-700 text-xs font-bold">মুছে ফেলুন</button>
@@ -162,12 +196,12 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
-            <label class="text-[11px] text-slate-500 font-medium ml-1">পূর্ণ নাম *</label>
-            <input type="text" id="memberName" placeholder="যেমন: করিম উদ্দিন" required class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5">
+            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">পূর্ণ নাম *</label>
+            <input type="text" id="memberName" placeholder="যেমন: করিম উদ্দিন" required class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5">
           </div>
           <div>
-            <label class="text-[11px] text-slate-500 font-medium ml-1">পদবি / ভূমিকা *</label>
-            <select id="memberRole" required class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5 font-medium cursor-pointer">
+            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">পদবি / ভূমিকা *</label>
+            <select id="memberRole" required class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5 font-medium cursor-pointer">
               <option value="উপদেষ্টা">উপদেষ্টা</option>
               <option value="সভাপতি">সভাপতি</option>
               <option value="সহ-সভাপতি">সহ-সভাপতি</option>
@@ -185,12 +219,12 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
-            <label class="text-[11px] text-slate-500 font-medium ml-1">মোবাইল নম্বর (ঐচ্ছিক)</label>
-            <input type="tel" id="memberPhone" placeholder="017xxxxxxxx" class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5">
+            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">মোবাইল নম্বর (ঐচ্ছিক)</label>
+            <input type="tel" id="memberPhone" placeholder="017xxxxxxxx" class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5">
           </div>
           <div>
-            <label class="text-[11px] text-slate-500 font-medium ml-1">রক্তের গ্রুপ (ঐচ্ছিক)</label>
-            <select id="memberBlood" class="w-full light-input px-3 py-2 rounded-xl text-xs mt-0.5 cursor-pointer font-medium">
+            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">রক্তের গ্রুপ (ঐচ্ছিক)</label>
+            <select id="memberBlood" class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5 cursor-pointer font-medium">
               <option value="">জানা নেই / খালি রাখুন</option>
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -205,12 +239,12 @@
         </div>
 
         <div>
-          <label class="text-[11px] text-slate-500 font-medium ml-1">বর্তমান ঠিকানা / গ্রাম (ঐচ্ছিক)</label>
-          <input type="text" id="memberAddress" placeholder="গ্রাম/ওয়ার্ড, উপজেলা, জেলা" class="w-full light-input px-3.5 py-2 rounded-xl text-xs mt-0.5">
+          <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">বর্তমান ঠিকানা / গ্রাম (ঐচ্ছিক)</label>
+          <input type="text" id="memberAddress" placeholder="গ্রাম/ওয়ার্ড, উপজেলা, জেলা" class="w-full app-input px-3.5 py-2 rounded-xl text-xs mt-0.5">
         </div>
 
         <div class="flex justify-end pt-1">
-          <button type="submit" id="submitBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 transition flex items-center gap-1.5 active:scale-95">
+          <button type="submit" id="submitBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/25 transition flex items-center gap-1.5 active:scale-95">
             <i class="fa-solid fa-floppy-disk"></i> <span id="submitBtnText">সংরক্ষণ করুন</span>
           </button>
         </div>
@@ -220,12 +254,12 @@
       <div id="controlBar" class="space-y-2 pt-1">
         <div class="relative w-full">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-xs"></i>
-          <input type="text" id="searchInput" placeholder="নাম, ফোন, পদবি বা এলাকা দিয়ে খুঁজুন..." class="w-full light-input pl-9 pr-3 py-2.5 rounded-2xl text-xs placeholder:text-slate-400 shadow-sm">
+          <input type="text" id="searchInput" placeholder="নাম, ফোন, পদবি বা এলাকা দিয়ে খুঁজুন..." class="w-full app-input pl-9 pr-3 py-2.5 rounded-2xl text-xs placeholder:text-slate-400 shadow-sm">
         </div>
         
         <div class="grid grid-cols-3 gap-2">
           <!-- পদবি -->
-          <select id="roleFilter" class="light-input rounded-2xl px-2.5 py-2 text-xs text-slate-700 font-medium cursor-pointer shadow-sm">
+          <select id="roleFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer shadow-sm">
             <option value="all">সব পদবি</option>
             <option value="উপদেষ্টা">উপদেষ্টা</option>
             <option value="সভাপতি">সভাপতি</option>
@@ -241,8 +275,8 @@
           </select>
 
           <!-- রক্তের গ্রুপ -->
-          <select id="bloodFilter" class="light-input rounded-2xl px-2.5 py-2 text-xs text-slate-700 font-medium cursor-pointer shadow-sm">
-            <option value="all">সব রক্ত</option>
+          <select id="bloodFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer shadow-sm">
+            <option value="all">সব রক্ত 🩸</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>
@@ -254,7 +288,7 @@
           </select>
 
           <!-- সর্ট -->
-          <select id="sortBy" class="light-input rounded-2xl px-2 py-2 text-xs text-slate-700 font-medium cursor-pointer shadow-sm">
+          <select id="sortBy" class="app-input rounded-2xl px-2 py-2 text-xs font-medium cursor-pointer shadow-sm">
             <option value="role">পদমর্যাদা</option>
             <option value="name">নাম (A-Z)</option>
             <option value="newest">নতুন আগে</option>
@@ -270,37 +304,37 @@
   </div>
 
   <!-- একতা ক্লাবের কার্যক্রম (ছবি পপআপ) -->
-  <div id="galleryModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
-    <div class="light-glass-card bg-white p-4 sm:p-5 rounded-3xl max-w-sm w-full shadow-2xl border border-slate-100 space-y-3.5 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-2">
-        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-          <i class="fa-solid fa-camera text-emerald-600"></i> একতা ক্লাবের কার্যক্রম
+  <div id="galleryModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 flex items-center justify-center p-3 hidden">
+    <div class="glass-card bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-3xl max-w-sm w-full shadow-2xl border border-slate-100 dark:border-slate-800 space-y-3.5 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
+        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+          <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> একতা ক্লাবের কার্যক্রম
         </h3>
-        <button id="closeGalleryBtn" class="text-slate-400 hover:text-slate-600 p-1 text-base">✕</button>
+        <button id="closeGalleryBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 text-base">✕</button>
       </div>
 
       <div class="space-y-3.5">
-        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 shadow-sm">
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 shadow-sm">
           <img src="activity1.jpg" alt="বার্ষিক প্রীতি ফুটবল ম্যাচ" class="w-full h-44 object-cover" onerror="this.onerror=null; this.src='activity1.png';">
           <div class="p-3">
-            <h4 class="text-xs font-bold text-slate-800">বার্ষিক প্রীতি ফুটবল ম্যাচ</h4>
-            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
+            <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">বার্ষিক প্রীতি ফুটবল ম্যাচ</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">তারিখ: ২০২৬</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 shadow-sm">
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 shadow-sm">
           <img src="activity2.jpg" alt="ক্লাবের সদস্যবৃন্দ" class="w-full h-44 object-cover" onerror="this.onerror=null; this.src='activity2.png';">
           <div class="p-3">
-            <h4 class="text-xs font-bold text-slate-800">ক্লাবের সদস্যবৃন্দ</h4>
-            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
+            <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">ক্লাবের সদস্যবৃন্দ</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">তারিখ: ২০২৬</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 shadow-sm">
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 shadow-sm">
           <img src="activity3.jpg" alt="বর্তমান ক্লাব ঘর" class="w-full h-44 object-cover" onerror="this.onerror=null; this.src='activity3.png';">
           <div class="p-3">
-            <h4 class="text-xs font-bold text-slate-800">বর্তমান ক্লাব ঘর</h4>
-            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
+            <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">বর্তমান ক্লাব ঘর</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">তারিখ: ২০২৬</p>
           </div>
         </div>
       </div>
@@ -308,19 +342,19 @@
   </div>
 
   <!-- Club Admin Login Modal -->
-  <div id="loginModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="light-glass-card bg-white p-5 rounded-3xl max-w-xs w-full shadow-2xl border border-slate-100 space-y-3">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-2">
-        <h3 class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-          <i class="fa-solid fa-key text-emerald-600"></i> ক্লাব সদস্য ভেরিফিকেশন
+  <div id="loginModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card bg-white dark:bg-slate-900 p-5 rounded-3xl max-w-xs w-full shadow-2xl border border-slate-100 dark:border-slate-800 space-y-3">
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
+        <h3 class="text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+          <i class="fa-solid fa-key text-emerald-600 dark:text-emerald-400"></i> ক্লাব সদস্য ভেরিফিকেশন
         </h3>
         <button id="closeModalBtn" class="text-slate-400 hover:text-slate-600 text-sm">✕</button>
       </div>
-      <p class="text-[11px] text-slate-500">তথ্য যুক্ত বা এডিট করতে ক্লাবের ইউজারনেম ও পাসওয়ার্ড দিন:</p>
+      <p class="text-[11px] text-slate-500 dark:text-slate-400">তথ্য যুক্ত বা এডিট করতে ক্লাবের ইউজারনেম ও পাসওয়ার্ড দিন:</p>
       
       <div class="space-y-2">
-        <input type="text" id="clubUser" placeholder="ইউজারনেম লিখুন" autocomplete="off" class="w-full light-input px-3 py-2 rounded-xl text-xs">
-        <input type="password" id="clubPass" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off" class="w-full light-input px-3 py-2 rounded-xl text-xs">
+        <input type="text" id="clubUser" placeholder="ইউজারনেম লিখুন" autocomplete="off" class="w-full app-input px-3 py-2 rounded-xl text-xs">
+        <input type="password" id="clubPass" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off" class="w-full app-input px-3 py-2 rounded-xl text-xs">
       </div>
 
       <button id="verifyLoginBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 transition">
@@ -330,7 +364,7 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 bg-slate-900 text-white px-4 py-2.5 rounded-2xl text-xs font-medium shadow-2xl transition-all duration-300 transform translate-y-24 opacity-0 pointer-events-none flex items-center gap-2">
+  <div id="toast" class="fixed bottom-6 bg-slate-900/90 dark:bg-emerald-950/90 backdrop-blur-md text-white border border-slate-700 dark:border-emerald-700 px-4 py-2.5 rounded-2xl text-xs font-medium shadow-2xl transition-all duration-300 transform translate-y-24 opacity-0 pointer-events-none flex items-center gap-2 z-50">
     <i class="fa-solid fa-circle-check text-emerald-400"></i>
     <span id="toastMsg">সফল হয়েছে!</span>
   </div>
@@ -390,7 +424,33 @@
     let isAdmin = localStorage.getItem("ekota_admin_logged") === "true";
     let allMembers = [];
 
-    // নোটিশ বোর্ড এলিমেন্টস
+    // Dark Mode Controller
+    const htmlEl = document.documentElement;
+    const themeToggleBtn = document.getElementById("themeToggleBtn");
+    const themeIcon = document.getElementById("themeIcon");
+
+    const savedTheme = localStorage.getItem("ekota_theme") || "light";
+    if (savedTheme === "dark") {
+      htmlEl.classList.remove("light");
+      htmlEl.classList.add("dark");
+      themeIcon.className = "fa-solid fa-sun";
+    }
+
+    themeToggleBtn.onclick = () => {
+      if (htmlEl.classList.contains("dark")) {
+        htmlEl.classList.remove("dark");
+        htmlEl.classList.add("light");
+        themeIcon.className = "fa-solid fa-moon";
+        localStorage.setItem("ekota_theme", "light");
+      } else {
+        htmlEl.classList.remove("light");
+        htmlEl.classList.add("dark");
+        themeIcon.className = "fa-solid fa-sun";
+        localStorage.setItem("ekota_theme", "dark");
+      }
+    };
+
+    // নোটিশ বোর্ড
     const noticeTextDisplay = document.getElementById("noticeTextDisplay");
     const editNoticeBtn = document.getElementById("editNoticeBtn");
     const noticeEditForm = document.getElementById("noticeEditForm");
@@ -446,7 +506,7 @@
     const toast = document.getElementById("toast");
     const toastMsg = document.getElementById("toastMsg");
 
-    // স্বয়ংক্রিয় ইমেজ কম্প্রেসার (Canvas ব্যবহার করে মাত্র ২০-৩০ KB-তে রূপান্তর)
+    // অটো ইমেজ অপটিমাইজার
     photoInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -477,7 +537,6 @@
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          // আল্ট্রা-লাইটওয়েট ওয়েব ইমেজ
           const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.7);
           memberPhotoBase64.value = compressedDataUrl;
           photoPreview.innerHTML = `<img src="${compressedDataUrl}" class="w-full h-full object-cover">`;
@@ -548,7 +607,6 @@
       }
     };
 
-    // নোটিশ পরিচালনা
     editNoticeBtn.onclick = () => {
       noticeInput.value = noticeTextDisplay.innerText;
       noticeEditForm.classList.remove("hidden");
@@ -568,7 +626,6 @@
       }
     };
 
-    // রিয়েলটাইম নোটিশ লোড
     onSnapshot(doc(db, "ekota_club_meta", "notice"), (snap) => {
       if (snap.exists() && snap.data().text) {
         noticeTextDisplay.innerText = snap.data().text;
@@ -593,6 +650,12 @@
       toast.classList.remove("translate-y-24", "opacity-0");
       setTimeout(() => toast.classList.add("translate-y-24", "opacity-0"), 2200);
     }
+
+    window.copyPhone = (phone) => {
+      navigator.clipboard.writeText(phone).then(() => {
+        showToast(`নম্বর কপি হয়েছে: ${phone}`);
+      });
+    };
 
     memberForm.onsubmit = async (e) => {
       e.preventDefault();
@@ -662,7 +725,6 @@
       const bFilter = bloodFilter.value;
       const sortType = sortBy.value;
 
-      // স্ট্যাটিস্টিক্স ক্যালকুলেশন
       let advisorCount = 0;
       let executiveCount = 0;
       let generalCount = 0;
@@ -709,9 +771,9 @@
 
       if (filtered.length === 0) {
         membersList.innerHTML = `
-          <div class="text-center py-10 text-slate-400">
-            <i class="fa-solid fa-users-slash text-3xl mb-2 opacity-50"></i>
-            <p class="text-xs">কোনো সদস্য পাওয়া যায়নি</p>
+          <div class="text-center py-12 text-slate-400 dark:text-slate-500">
+            <i class="fa-solid fa-user-xmark text-4xl mb-3 opacity-40"></i>
+            <p class="text-xs font-semibold">কোনো সদস্য খুঁজে পাওয়া যায়নি</p>
           </div>
         `;
         return;
@@ -720,63 +782,78 @@
       filtered.forEach((member) => {
         const cleanPhone = (member.phone || "").replace(/[^0-9]/g, '');
         const card = document.createElement("div");
-        card.className = "light-glass-card p-3.5 sm:p-4 rounded-3xl flex flex-col gap-2.5 transition";
+        card.className = "glass-card p-4 rounded-3xl flex flex-col gap-3 relative overflow-hidden group hover:border-emerald-500/40";
 
-        // অ্যাভাটার লজিক (ছবি থাকলে আসল ছবি, না থাকলে সুন্দর লেটার আইকন)
+        // রোল ব্যাজের কালার থিম
+        let roleBadgeClass = "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800";
+        if (member.role === "উপদেষ্টা" || member.role === "সভাপতি") {
+          roleBadgeClass = "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300 border-amber-300 dark:border-amber-800";
+        } else if (member.role === "সাধারণ সদস্য") {
+          roleBadgeClass = "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700";
+        }
+
         const firstLetter = (member.name || "স").trim().charAt(0);
         const avatarHtml = member.photo 
-          ? `<img src="${member.photo}" class="w-11 h-11 rounded-2xl object-cover border border-emerald-500/30 shadow-sm shrink-0">`
-          : `<div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-base shadow-sm shrink-0">${firstLetter}</div>`;
+          ? `<img src="${member.photo}" class="w-12 h-12 rounded-2xl object-cover border border-emerald-500/30 shadow-md shrink-0">`
+          : `<div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">${firstLetter}</div>`;
 
         card.innerHTML = `
           <div class="flex justify-between items-start gap-2.5">
-            <div class="flex items-start gap-3">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
               ${avatarHtml}
-              <div>
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <h3 class="text-sm font-bold text-slate-800">${member.name}</h3>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${member.role === 'উপদেষ্টা' ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'} border">${member.role}</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="text-sm font-extrabold text-slate-800 dark:text-slate-100 truncate">${member.name}</h3>
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${roleBadgeClass}">${member.role}</span>
                 </div>
                 
                 ${member.phone ? `
-                  <p class="text-xs font-semibold text-slate-600 mt-1 flex items-center gap-2">
-                    <i class="fa-solid fa-phone text-emerald-600 text-[11px]"></i> ${member.phone}
-                    ${member.blood ? `<span class="bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] rounded font-bold border border-rose-200">🩸 ${member.blood}</span>` : ''}
-                  </p>
+                  <button onclick="window.copyPhone('${member.phone}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-1.5 flex items-center gap-1.5 hover:text-emerald-600 dark:hover:text-emerald-400 transition" title="কপি করতে ক্লিক করুন">
+                    <i class="fa-solid fa-phone text-emerald-600 dark:text-emerald-400 text-[11px]"></i> 
+                    <span>${member.phone}</span>
+                    <i class="fa-regular fa-copy text-[10px] text-slate-400 opacity-60 group-hover:opacity-100"></i>
+                  </button>
                 ` : `
-                  <p class="text-xs text-slate-400 mt-1 flex items-center gap-2">
-                    <i class="fa-solid fa-phone-slash text-[11px]"></i> নম্বর দেওয়া নেই
-                    ${member.blood ? `<span class="bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] rounded font-bold border border-rose-200">🩸 ${member.blood}</span>` : ''}
+                  <p class="text-xs text-slate-400 dark:text-slate-500 mt-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone-slash text-[11px]"></i> নম্বর নেই
                   </p>
                 `}
 
                 ${member.address ? `
-                  <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5">
-                    <i class="fa-solid fa-location-dot text-slate-400"></i> ${member.address}
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1.5 truncate">
+                    <i class="fa-solid fa-location-dot text-slate-400 text-[10px]"></i> ${member.address}
                   </p>
                 ` : ''}
               </div>
             </div>
 
-            <!-- ফোন নম্বর থাকলে Call ও WhatsApp বাটন -->
-            ${cleanPhone ? `
-              <div class="flex items-center gap-1.5 shrink-0 action-buttons">
-                <a href="tel:${cleanPhone}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 flex items-center justify-center border border-emerald-200 text-xs shadow-sm transition" title="কল করুন">
-                  <i class="fa-solid fa-phone"></i>
-                </a>
-                <a href="https://wa.me/88${cleanPhone}" target="_blank" class="w-8 h-8 rounded-full bg-green-50 hover:bg-green-100 text-green-600 flex items-center justify-center border border-green-200 text-sm shadow-sm transition" title="হোয়াটসঅ্যাপ">
-                  <i class="fa-brands fa-whatsapp"></i>
-                </a>
-              </div>
-            ` : ''}
+            <div class="flex flex-col items-end gap-2 shrink-0">
+              ${member.blood ? `
+                <span class="bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60 px-2 py-0.5 text-[10px] rounded-lg font-black tracking-wide shadow-sm flex items-center gap-1">
+                  🩸 ${member.blood}
+                </span>
+              ` : ''}
+
+              <!-- অ্যাকশন বাটন -->
+              ${cleanPhone ? `
+                <div class="flex items-center gap-1.5 action-buttons">
+                  <a href="tel:${cleanPhone}" class="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-200 dark:border-emerald-800 text-xs shadow-sm transition active:scale-95" title="কল করুন">
+                    <i class="fa-solid fa-phone"></i>
+                  </a>
+                  <a href="https://wa.me/88${cleanPhone}" target="_blank" class="w-8 h-8 rounded-full bg-green-50 dark:bg-green-950/60 hover:bg-green-100 dark:hover:bg-green-900 text-green-600 dark:text-green-400 flex items-center justify-center border border-green-200 dark:border-green-800 text-sm shadow-sm transition active:scale-95" title="হোয়াটসঅ্যাপ">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </a>
+                </div>
+              ` : ''}
+            </div>
           </div>
 
           ${isAdmin ? `
-            <div class="flex justify-end items-center gap-2 pt-2 border-t border-slate-100 text-[11px] action-buttons">
-              <button onclick="window.startEdit('${member.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded-xl transition text-xs font-semibold shadow-sm">
+            <div class="flex justify-end items-center gap-2 pt-2 border-t border-slate-100 dark:border-slate-800 text-[11px] action-buttons">
+              <button onclick="window.startEdit('${member.id}')" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded-xl transition text-xs font-semibold shadow-sm">
                 <i class="fa-regular fa-pen-to-square"></i> ছবি ও তথ্য এডিট
               </button>
-              <button onclick="window.deleteMember('${member.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-2.5 py-1 rounded-xl transition text-xs shadow-sm">
+              <button onclick="window.deleteMember('${member.id}')" class="bg-rose-50 dark:bg-rose-950/60 hover:bg-rose-100 dark:hover:bg-rose-900 text-rose-600 dark:text-rose-400 px-2.5 py-1 rounded-xl transition text-xs shadow-sm">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
             </div>
