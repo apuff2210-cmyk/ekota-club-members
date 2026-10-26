@@ -7,9 +7,7 @@
   <meta name="theme-color" content="#059669">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: 'class',
-    }
+    tailwind.config = { darkMode: 'class' };
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,15 +29,13 @@
       background-attachment: fixed;
       color: #f8fafc;
     }
-    .glass-card {
-      transition: all 0.25s ease;
-    }
+    .glass-card { transition: all 0.25s ease; }
     .light .glass-card {
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 4px 10px -2px rgba(15, 23, 42, 0.02);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
     }
     .dark .glass-card {
       background: rgba(30, 41, 59, 0.9);
@@ -48,21 +44,9 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
     }
-    .light .app-input {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      color: #0f172a;
-    }
-    .dark .app-input {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #f8fafc;
-    }
-    .app-input:focus {
-      border-color: #059669;
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
-      outline: none;
-    }
+    .light .app-input { background: #ffffff; border: 1px solid #cbd5e1; color: #0f172a; }
+    .dark .app-input { background: #1e293b; border: 1px solid #334155; color: #f8fafc; }
+    .app-input:focus { border-color: #059669; box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); outline: none; }
     @media print {
       body { background: white !important; color: black !important; }
       header, #noticeSection, #summaryStats, #memberForm, #controlBar, #galleryModal, #loginModal, #gameModal, #toast, .action-buttons, footer { display: none !important; }
@@ -87,31 +71,26 @@
           </h1>
           <div class="flex items-center gap-2 mt-0.5">
             <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">স্মার্ট মোবাইল ডিরেক্টরি</p>
-            <!-- লাইভ ভিউ কাউন্টার ব্যাজ (হেডার) -->
-            <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800" title="মোট পেজ ভিউ">
-              <i class="fa-solid fa-eye text-[9px]"></i> <span id="headerViewCount">লোড হচ্ছে...</span>
+            <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800">
+              <i class="fa-solid fa-eye text-[9px]"></i> <span id="headerViewCount">১ বার</span>
             </span>
           </div>
         </div>
       </div>
 
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- পেনাল্টি শ্যুটআউট বাটন -->
-        <button id="openGameBtn" class="bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 active:scale-95 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md shadow-amber-500/30 transition flex items-center gap-1" title="পেনাল্টি শ্যুটআউট খেলা">
+        <button id="openGameBtn" class="bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 active:scale-95 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md shadow-amber-500/30 transition flex items-center gap-1">
           <span>⚽</span> <span>খেলা</span>
         </button>
 
-        <!-- Dark Mode Toggle -->
-        <button id="themeToggleBtn" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm active:scale-95 transition" title="ডার্ক/লাইট মোড">
+        <button id="themeToggleBtn" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm active:scale-95 transition">
           <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
         </button>
 
-        <!-- Gallery Button -->
-        <button id="openGalleryBtn" class="bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 px-2 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1" title="ক্লাবের কার্যক্রম ও ছবি">
+        <button id="openGalleryBtn" class="bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 px-2 py-1.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-1">
           <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> <span class="hidden sm:inline">কার্যক্রম</span>
         </button>
 
-        <!-- Admin Login Button -->
         <button id="adminLoginBtn" class="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition flex items-center gap-1">
           <i class="fa-solid fa-lock text-emerald-600 dark:text-emerald-400"></i> <span id="adminBtnText" class="hidden sm:inline">ক্লাব লগইন</span>
         </button>
@@ -149,21 +128,17 @@
 
     <!-- Main Content Area -->
     <main class="space-y-4">
-      <!-- স্ট্যাটিস্টিক্স ও কুইক সামারি -->
       <div id="summaryStats" class="glass-card p-3.5 rounded-3xl shadow-sm space-y-3">
         <div class="flex justify-between items-center px-1">
           <div>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
-              মোট সদস্যবৃন্দ
-              <span id="offlineBadge" class="hidden text-[9px] bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 px-1.5 py-0.5 rounded-md font-bold">অফলাইন</span>
-            </p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">মোট সদস্যবৃন্দ</p>
             <h3 id="statTotalMembers" class="text-2xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight">০ জন</h3>
           </div>
           <div class="flex items-center gap-2">
-            <button type="button" onclick="window.print()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm" title="তালিকা ডাউনলোড বা প্রিন্ট">
+            <button type="button" onclick="window.print()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
               <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">প্রিন্ট / PDF</span>
             </button>
-            <button type="button" id="toggleFormBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/25 active:scale-95">
+            <button type="button" id="toggleFormBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/25 active:scale-95">
               <i class="fa-solid fa-user-plus"></i> <span id="toggleFormText">নতুন সদস্য যোগ</span>
             </button>
           </div>
@@ -182,7 +157,7 @@
           <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 flex items-center gap-1.5">
             <i class="fa-solid fa-id-card text-emerald-600 dark:text-emerald-400"></i> <span id="formTitle">সদস্যের তথ্য ফরম</span>
           </h2>
-          <button type="button" id="cancelEditBtn" class="text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-medium">বাতিল</button>
+          <button type="button" id="cancelEditBtn" class="text-xs text-slate-500 font-medium">বাতিল</button>
         </div>
 
         <input type="hidden" id="editMemberId" value="">
@@ -193,14 +168,13 @@
             <i class="fa-solid fa-user"></i>
           </div>
           <div class="flex-1">
-            <label class="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">সদস্যের ছবি (গ্যালারি বা ক্যামেরা)</label>
-            <p class="text-[10px] text-slate-500 dark:text-slate-400">ছবি স্বয়ংক্রিয়ভাবে ছোট হয়ে যাবে</p>
+            <label class="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">সদস্যের ছবি</label>
             <div class="flex items-center gap-2 mt-1">
-              <label class="cursor-pointer bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-xl text-[11px] font-bold shadow-sm transition inline-flex items-center gap-1">
-                <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> ছবি বাছুন
+              <label class="cursor-pointer bg-white dark:bg-slate-700 hover:bg-slate-100 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-xl text-[11px] font-bold shadow-sm transition inline-flex items-center gap-1">
+                <i class="fa-solid fa-camera text-emerald-600"></i> ছবি বাছুন
                 <input type="file" id="photoInput" accept="image/*" class="hidden">
               </label>
-              <button type="button" id="removePhotoBtn" class="hidden text-rose-500 hover:text-rose-700 text-xs font-bold">মুছে ফেলুন</button>
+              <button type="button" id="removePhotoBtn" class="hidden text-rose-500 text-xs font-bold">মুছে ফেলুন</button>
             </div>
           </div>
         </div>
@@ -208,21 +182,17 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
             <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">পূর্ণ নাম *</label>
-            <input type="text" id="memberName" placeholder="যেমন: করিম উদ্দিন" required class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5">
+            <input type="text" id="memberName" required class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5">
           </div>
           <div>
-            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">পদবি / ভূমিকা *</label>
+            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">পদবি *</label>
             <select id="memberRole" required class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5 font-medium cursor-pointer">
               <option value="উপদেষ্টা">উপদেষ্টা</option>
               <option value="সভাপতি">সভাপতি</option>
               <option value="সহ-সভাপতি">সহ-সভাপতি</option>
               <option value="সাধারণ সম্পাদক">সাধারণ সম্পাদক</option>
-              <option value="যুগ্ম সাধারণ সম্পাদক">যুগ্ম সাধারণ সম্পাদক</option>
               <option value="কোষাধ্যক্ষ">কোষাধ্যক্ষ</option>
               <option value="সাংগঠনিক সম্পাদক">সাংগঠনিক সম্পাদক</option>
-              <option value="দপ্তর সম্পাদক">দপ্তর সম্পাদক</option>
-              <option value="প্রচার সম্পাদক">প্রচার সম্পাদক</option>
-              <option value="ক্রীড়া সম্পাদক">ক্রীড়া সম্পাদক</option>
               <option value="সাধারণ সদস্য" selected>সাধারণ সদস্য</option>
             </select>
           </div>
@@ -230,71 +200,59 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
-            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">মোবাইল নম্বর (ঐচ্ছিক)</label>
+            <label class="text-[11px] text-slate-500 font-medium ml-1">মোবাইল নম্বর</label>
             <input type="tel" id="memberPhone" placeholder="017xxxxxxxx" class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5">
           </div>
           <div>
-            <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">রক্তের গ্রুপ (ঐচ্ছিক)</label>
+            <label class="text-[11px] text-slate-500 font-medium ml-1">রক্তের গ্রুপ</label>
             <select id="memberBlood" class="w-full app-input px-3 py-2 rounded-xl text-xs mt-0.5 cursor-pointer font-medium">
-              <option value="">জানা নেই / খালি রাখুন</option>
+              <option value="">জানা নেই / খালি</option>
               <option value="A+">A+</option>
-              <option value="A-">A-</option>
               <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
               <option value="O+">O+</option>
-              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
             </select>
           </div>
         </div>
 
         <div>
-          <label class="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-1">বর্তমান ঠিকানা / গ্রাম (ঐচ্ছিক)</label>
-          <input type="text" id="memberAddress" placeholder="গ্রাম/ওয়ার্ড, উপজেলা, জেলা" class="w-full app-input px-3.5 py-2 rounded-xl text-xs mt-0.5">
+          <label class="text-[11px] text-slate-500 font-medium ml-1">ঠিকানা / গ্রাম</label>
+          <input type="text" id="memberAddress" class="w-full app-input px-3.5 py-2 rounded-xl text-xs mt-0.5">
         </div>
 
         <div class="flex justify-end pt-1">
-          <button type="submit" id="submitBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/25 transition flex items-center gap-1.5 active:scale-95">
+          <button type="submit" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md active:scale-95">
             <i class="fa-solid fa-floppy-disk"></i> <span id="submitBtnText">সংরক্ষণ করুন</span>
           </button>
         </div>
       </form>
 
-      <!-- ফিল্টার, সার্চ ও সর্টিং বার -->
+      <!-- ফিল্টার বার -->
       <div id="controlBar" class="space-y-2 pt-1">
         <div class="relative w-full">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-xs"></i>
-          <input type="text" id="searchInput" placeholder="নাম, ফোন, পদবি বা এলাকা দিয়ে খুঁজুন..." class="w-full app-input pl-9 pr-3 py-2.5 rounded-2xl text-xs placeholder:text-slate-400 shadow-sm">
+          <input type="text" id="searchInput" placeholder="নাম, ফোন বা এলাকা দিয়ে খুঁজুন..." class="w-full app-input pl-9 pr-3 py-2.5 rounded-2xl text-xs">
         </div>
         
         <div class="grid grid-cols-3 gap-2">
-          <select id="roleFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer shadow-sm">
+          <select id="roleFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer">
             <option value="all">সব পদবি</option>
             <option value="উপদেষ্টা">উপদেষ্টা</option>
             <option value="সভাপতি">সভাপতি</option>
-            <option value="সহ-সভাপতি">সহ-সভাপতি</option>
-            <option value="সাধারণ সম্পাদক">সাধারণ সম্পাদক</option>
-            <option value="কোষাধ্যক্ষ">কোষাধ্যক্ষ</option>
             <option value="সাধারণ সদস্য">সাধারণ সদস্য</option>
           </select>
 
-          <select id="bloodFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer shadow-sm">
+          <select id="bloodFilter" class="app-input rounded-2xl px-2.5 py-2 text-xs font-medium cursor-pointer">
             <option value="all">সব রক্ত 🩸</option>
             <option value="A+">A+</option>
-            <option value="A-">A-</option>
             <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
             <option value="O+">O+</option>
-            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
           </select>
 
-          <select id="sortBy" class="app-input rounded-2xl px-2 py-2 text-xs font-medium cursor-pointer shadow-sm">
+          <select id="sortBy" class="app-input rounded-2xl px-2 py-2 text-xs font-medium cursor-pointer">
             <option value="role">পদমর্যাদা</option>
             <option value="name">নাম (A-Z)</option>
-            <option value="newest">নতুন আগে</option>
           </select>
         </div>
       </div>
@@ -305,73 +263,92 @@
       </div>
     </main>
 
-    <!-- ফুটার এবং মোট ভিজিটর কাউন্টার -->
+    <!-- ফুটার -->
     <footer class="pt-6 pb-2 text-center space-y-2 border-t border-slate-200/60 dark:border-slate-800">
       <div class="inline-flex items-center gap-2 bg-white dark:bg-slate-800 px-3.5 py-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm text-xs font-semibold text-slate-600 dark:text-slate-300">
         <i class="fa-solid fa-chart-line text-emerald-600 dark:text-emerald-400"></i>
         <span>অ্যাপ ভিজিট হয়েছে:</span>
-        <span id="footerViewCount" class="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">০</span> বার
+        <span id="footerViewCount" class="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">১</span> বার
       </div>
-      <p class="text-[11px] text-slate-400 dark:text-slate-500">একতা ক্লাব © ২০২৬ | সর্বস্বত্ব সংরক্ষিত</p>
+      <p class="text-[11px] text-slate-400">একতা ক্লাব © ২০২৬ | সর্বস্বত্ব সংরক্ষিত</p>
     </footer>
   </div>
 
-  <!-- পেনাল্টি শ্যুটআউট গেম মডাল -->
-  <div id="gameModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
-    <div class="glass-card bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-3 max-h-[96vh] overflow-y-auto">
-      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
-        <div class="flex items-center gap-2">
-          <span class="text-xl">🥅</span>
+  <!-- পেনাল্টি শ্যুটআউট চ্যালেঞ্জ গেম মডাল (কমপ্যাক্ট ও চ্যালেঞ্জিং) -->
+  <div id="gameModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-2.5 hidden">
+    <div class="glass-card bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-3.5 flex flex-col gap-2.5 max-h-[96vh] overflow-y-auto">
+      
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-1.5">
+        <div class="flex items-center gap-1.5">
+          <span class="text-lg">🥅</span>
           <div>
-            <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 leading-tight">পেনাল্টি শ্যুটআউট চ্যালেঞ্জ</h3>
-            <p class="text-[10px] text-slate-500">বল টেনে পোস্টের কোণে সুইপ করে গোল দিন!</p>
+            <h3 class="text-xs font-black text-slate-800 dark:text-slate-100">পেনাল্টি শ্যুটআউট</h3>
+            <p class="text-[9px] text-slate-400">বল টেনে পোস্টের কোণে সুইপ করুন</p>
           </div>
         </div>
-        <button id="closeGameBtn" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-500 hover:text-rose-600 flex items-center justify-center font-bold text-sm">✕</button>
+        <button id="closeGameBtn" class="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-500 hover:text-rose-600 flex items-center justify-center font-bold text-xs">✕</button>
       </div>
 
+      <!-- গেম ক্যানভাস এরিয়া (কমপ্যাক্ট উচ্চতা) -->
       <div class="relative w-full rounded-2xl overflow-hidden border-2 border-emerald-500/40 bg-gradient-to-b from-sky-400 via-emerald-600 to-emerald-800 shadow-inner flex flex-col items-center select-none" style="touch-action: none;">
-        <div class="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none z-10">
-          <div class="bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20 flex items-center gap-1.5">
-            <span>গোল:</span> <span id="currentScoreDisplay" class="text-amber-300 text-base font-black">০</span>
+        
+        <div class="absolute top-2 left-2 right-2 flex justify-between items-center pointer-events-none z-10">
+          <div class="bg-black/60 backdrop-blur-md text-white px-2.5 py-0.5 rounded-xl text-xs font-bold border border-white/20 flex items-center gap-1">
+            <span>গোল:</span> <span id="currentScoreDisplay" class="text-amber-300 text-sm font-black">০</span>
           </div>
-          <div class="bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20">
+          <div class="bg-black/60 backdrop-blur-md text-white px-2 py-0.5 rounded-xl text-xs border border-white/20">
             <span id="livesDisplay">❤️❤️❤️</span>
           </div>
         </div>
 
-        <canvas id="penaltyCanvas" width="360" height="400" class="w-full h-[360px] sm:h-[400px] block cursor-crosshair"></canvas>
+        <!-- ক্যানভাসের উচ্চতা ২৭০px রাখা হয়েছে যাতে নিচে স্কোরবোর্ড পরিষ্কার দেখা যায় -->
+        <canvas id="penaltyCanvas" width="340" height="270" class="w-full h-[270px] block cursor-crosshair"></canvas>
 
-        <div id="gameStartOverlay" class="absolute inset-0 bg-slate-950/50 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-4 z-20">
-          <div class="w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center text-3xl mb-2 animate-bounce">
+        <div id="gameStartOverlay" class="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-3 z-20">
+          <div class="w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-2xl mb-1.5 animate-bounce">
             ⚽
           </div>
-          <h4 class="text-base font-black text-white drop-shadow-md">পেনাল্টি শট নিতে প্রস্তুত?</h4>
-          <p class="text-xs text-white/90 mt-1 max-w-[240px]">ফুটবলটি টেনে পোস্টের কোণে সুইপ করুন!</p>
-          <button id="startPlayBtn" class="mt-3 bg-gradient-to-r from-amber-500 to-emerald-500 text-white font-extrabold px-6 py-2 rounded-2xl shadow-lg active:scale-95 text-xs">
+          <h4 class="text-sm font-black text-white">পেনাল্টি শট নিন!</h4>
+          <p class="text-[10px] text-white/90 mt-0.5 max-w-[210px]">বল টেনে পোস্টের কোণে সুইপ করুন। কিপার ফাঁকি দেওয়া কঠিন!</p>
+          <button id="startPlayBtn" class="mt-2.5 bg-gradient-to-r from-amber-500 to-emerald-500 text-white font-extrabold px-5 py-1.5 rounded-xl shadow-lg active:scale-95 text-xs">
             শুরু করুন 🥅
           </button>
         </div>
 
-        <div id="shotStatusFlash" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-2xl drop-shadow-lg pointer-events-none transition-all duration-300 transform scale-50 opacity-0 z-15"></div>
+        <div id="shotStatusFlash" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xl drop-shadow-lg pointer-events-none transition-all duration-300 transform scale-50 opacity-0 z-15"></div>
 
-        <div id="gameOverOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 z-20 hidden">
-          <div class="text-2xl mb-1">🏁</div>
-          <h4 class="text-base font-black text-rose-400">খেলা সমাপ্ত!</h4>
-          <div id="finalScoreVal" class="text-3xl font-black text-amber-300 my-1">০</div>
-          <div class="w-full max-w-[240px] space-y-2 mt-1">
-            <input type="text" id="playerNameInput" placeholder="আপনার নাম লিখুন..." class="w-full app-input px-3 py-1 rounded-xl text-xs text-center font-bold">
-            <div class="flex gap-2">
-              <button id="submitScoreBtn" class="flex-1 bg-amber-500 text-white font-bold py-1.5 rounded-xl text-xs shadow-md">
+        <div id="gameOverOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-3 z-20 hidden">
+          <h4 class="text-sm font-black text-rose-400">খেলা সমাপ্ত! (৩ বার মিস)</h4>
+          <p class="text-white text-[10px] mt-0.5">মোট গোল:</p>
+          <div id="finalScoreVal" class="text-3xl font-black text-amber-300 my-0.5">০</div>
+
+          <div class="w-full max-w-[220px] space-y-1.5 mt-1">
+            <input type="text" id="playerNameInput" placeholder="আপনার নাম লিখুন..." class="w-full app-input px-2.5 py-1 rounded-xl text-xs text-center font-bold">
+            <div class="flex gap-1.5">
+              <button id="submitScoreBtn" class="flex-1 bg-amber-500 text-white font-bold py-1 rounded-xl text-[11px] shadow-md active:scale-95">
                 🏆 স্কোর জমা
               </button>
-              <button id="restartGameBtn" class="flex-1 bg-emerald-600 text-white font-bold py-1.5 rounded-xl text-xs shadow-md">
+              <button id="restartGameBtn" class="flex-1 bg-emerald-600 text-white font-bold py-1 rounded-xl text-[11px] shadow-md active:scale-95">
                 আবার খেলুন
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- ক্লাবের শীর্ষ পেনাল্টি স্কোরার (সবসময় দৃশ্যমান) -->
+      <div class="border-t border-slate-100 dark:border-slate-800 pt-1.5 space-y-1">
+        <div class="flex justify-between items-center px-0.5">
+          <span class="text-[11px] font-black text-slate-700 dark:text-slate-200 flex items-center gap-1">
+            <i class="fa-solid fa-trophy text-amber-500"></i> সেরা স্কোরার লিডারবোর্ড
+          </span>
+          <span class="text-[9px] text-emerald-600 font-bold bg-emerald-50 dark:bg-emerald-950 px-1.5 py-0.5 rounded">লাইভ</span>
+        </div>
+        <div id="leaderboardList" class="space-y-1 max-h-28 overflow-y-auto pr-0.5">
+          <p class="text-[10px] text-slate-400 text-center py-2">স্কোর লোড হচ্ছে...</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -380,33 +357,24 @@
     <div class="glass-card bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-3xl max-w-sm w-full shadow-2xl border border-slate-100 dark:border-slate-800 space-y-3.5 max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
         <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
-          <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> একতা ক্লাবের কার্যক্রম
+          <i class="fa-solid fa-camera text-emerald-600"></i> একতা ক্লাবের কার্যক্রম
         </h3>
-        <button id="closeGalleryBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 text-base">✕</button>
+        <button id="closeGalleryBtn" class="text-slate-400 hover:text-slate-600 text-base">✕</button>
       </div>
 
       <div class="space-y-3.5">
-        <div class="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 shadow-sm">
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 dark:bg-slate-800">
           <img src="activity1.jpg" alt="বার্ষিক প্রীতি ফুটবল ম্যাচ" class="w-full h-44 object-cover" onerror="this.onerror=null; this.src='activity1.png';">
           <div class="p-3">
             <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">বার্ষিক প্রীতি ফুটবল ম্যাচ</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">তারিখ: ২০২৬</p>
+            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
           </div>
         </div>
-
-        <div class="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 shadow-sm">
+        <div class="rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-50 dark:bg-slate-800">
           <img src="activity2.jpg" alt="ক্লাবের সদস্যবৃন্দ" class="w-full h-44 object-cover" onerror="this.onerror=null; this.src='activity2.png';">
           <div class="p-3">
             <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">ক্লাবের সদস্যবৃন্দ</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">তারিখ: ২০২৬</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 shadow-sm">
-          <img src="activity3.jpg" alt="বর্তমান ক্লাব ঘর" class="w-full h-44 object-cover" onerror="this.onerror=null; this.src='activity3.png';">
-          <div class="p-3">
-            <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">বর্তমান ক্লাব ঘর</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">তারিখ: ২০২৬</p>
+            <p class="text-[11px] text-slate-500 mt-0.5">তারিখ: ২০২৬</p>
           </div>
         </div>
       </div>
@@ -416,27 +384,22 @@
   <!-- Club Admin Login Modal -->
   <div id="loginModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card bg-white dark:bg-slate-900 p-5 rounded-3xl max-w-xs w-full shadow-2xl border border-slate-100 dark:border-slate-800 space-y-3">
-      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
-        <h3 class="text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
-          <i class="fa-solid fa-key text-emerald-600 dark:text-emerald-400"></i> ক্লাব সদস্য ভেরিফিকেশন
-        </h3>
-        <button id="closeModalBtn" class="text-slate-400 hover:text-slate-600 text-sm">✕</button>
+      <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+        <h3 class="text-xs font-bold text-slate-800 dark:text-slate-100">ক্লাব সদস্য ভেরিফিকেশন</h3>
+        <button id="closeModalBtn" class="text-slate-400 text-sm">✕</button>
       </div>
-      <p class="text-[11px] text-slate-500 dark:text-slate-400">তথ্য যুক্ত বা এডিট করতে ক্লাবের পিন দিন:</p>
-      
       <div class="space-y-2">
-        <input type="text" id="clubUser" placeholder="ইউজারনেম লিখুন" autocomplete="off" class="w-full app-input px-3 py-2 rounded-xl text-xs">
-        <input type="password" id="clubPass" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off" class="w-full app-input px-3 py-2 rounded-xl text-xs">
+        <input type="text" id="clubUser" placeholder="ইউজারনেম লিখুন" class="w-full app-input px-3 py-2 rounded-xl text-xs">
+        <input type="password" id="clubPass" placeholder="পাসওয়ার্ড লিখুন" class="w-full app-input px-3 py-2 rounded-xl text-xs">
       </div>
-
-      <button id="verifyLoginBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 transition">
+      <button id="verifyLoginBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl text-xs font-bold shadow-md">
         প্রবেশ করুন
       </button>
     </div>
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 bg-slate-900/90 dark:bg-emerald-950/90 backdrop-blur-md text-white border border-slate-700 dark:border-emerald-700 px-4 py-2.5 rounded-2xl text-xs font-medium shadow-2xl transition-all duration-300 transform translate-y-24 opacity-0 pointer-events-none flex items-center gap-2 z-50">
+  <div id="toast" class="fixed bottom-6 bg-slate-900/90 text-white border border-slate-700 px-4 py-2.5 rounded-2xl text-xs font-medium shadow-2xl transition-all duration-300 transform translate-y-24 opacity-0 pointer-events-none flex items-center gap-2 z-50">
     <i class="fa-solid fa-circle-check text-emerald-400"></i>
     <span id="toastMsg">সফল হয়েছে!</span>
   </div>
@@ -478,43 +441,35 @@
 
     const roleHierarchy = {
       "উপদেষ্টা": 1, "সভাপতি": 2, "সহ-সভাপতি": 3, "সাধারণ সম্পাদক": 4,
-      "যুগ্ম সাধারণ সম্পাদক": 5, "কোষাধ্যক্ষ": 6, "সাংগঠনিক সম্পাদক": 7,
-      "দপ্তর সম্পাদক": 8, "প্রচার সম্পাদক": 9, "ক্রীড়া সম্পাদক": 10, "সাধারণ সদস্য": 99
+      "কোষাধ্যক্ষ": 5, "সাংগঠনিক সম্পাদক": 6, "সাধারণ সদস্য": 99
     };
 
     let isAdmin = localStorage.getItem("ekota_admin_logged") === "true";
     let allMembers = [];
     let allNotices = [];
+    let allLeaderboard = [];
 
-    // ============================================
-    // পেজ ভিউ কাউন্টার লজিক (Page View Tracker)
-    // ============================================
+    // পেজ ভিউ ট্র্যাকার
     const headerViewCount = document.getElementById("headerViewCount");
     const footerViewCount = document.getElementById("footerViewCount");
 
     async function incrementPageView() {
       try {
-        const statsDocRef = doc(db, "ekota_club_meta", "visitor_analytics");
-        // প্রতি ভিজিটে কাউন্ট ১ বৃদ্ধি
-        await setDoc(statsDocRef, {
+        await setDoc(doc(db, "ekota_club_meta", "visitor_analytics"), {
           totalViews: increment(1)
         }, { merge: true });
       } catch (err) {
-        console.warn("Analytics increment failed (offline):", err);
+        console.warn("Analytics offline:", err);
       }
     }
     incrementPageView();
 
-    // ভিউ কাউন্ট রিয়েলটাইম ডিসপ্লে
     onSnapshot(doc(db, "ekota_club_meta", "visitor_analytics"), (snap) => {
       if (snap.exists()) {
         const views = snap.data().totalViews || 1;
         const formatted = Number(views).toLocaleString('bn-BD');
         headerViewCount.innerText = `${formatted} বার`;
         footerViewCount.innerText = formatted;
-      } else {
-        headerViewCount.innerText = "১ বার";
-        footerViewCount.innerText = "১";
       }
     });
 
@@ -522,20 +477,18 @@
     const htmlEl = document.documentElement;
     const themeToggleBtn = document.getElementById("themeToggleBtn");
     const themeIcon = document.getElementById("themeIcon");
-    const savedTheme = localStorage.getItem("ekota_theme") || "light";
-    if (savedTheme === "dark") {
+    if (localStorage.getItem("ekota_theme") === "dark") {
       htmlEl.classList.remove("light");
       htmlEl.classList.add("dark");
-      themeIcon.className = "fa-solid fa-sun";
+      themeIcon.className = "fa-solid fa-sun text-xs";
     }
     themeToggleBtn.onclick = () => {
       const isDark = htmlEl.classList.toggle("dark");
       htmlEl.classList.toggle("light", !isDark);
-      themeIcon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+      themeIcon.className = isDark ? "fa-solid fa-sun text-xs" : "fa-solid fa-moon text-xs";
       localStorage.setItem("ekota_theme", isDark ? "dark" : "light");
     };
 
-    // UI Elements
     const statTotalMembers = document.getElementById("statTotalMembers");
     const statAdvisor = document.getElementById("statAdvisor");
     const statExecutive = document.getElementById("statExecutive");
@@ -555,20 +508,13 @@
     }
 
     // গ্যালারি মডাল
-    const openGalleryBtn = document.getElementById("openGalleryBtn");
-    const galleryModal = document.getElementById("galleryModal");
-    const closeGalleryBtn = document.getElementById("closeGalleryBtn");
-    openGalleryBtn.onclick = () => galleryModal.classList.remove("hidden");
-    closeGalleryBtn.onclick = () => galleryModal.classList.add("hidden");
+    document.getElementById("openGalleryBtn").onclick = () => document.getElementById("galleryModal").classList.remove("hidden");
+    document.getElementById("closeGalleryBtn").onclick = () => document.getElementById("galleryModal").classList.add("hidden");
 
-    // ============================================
-    // সদস্য তালিকা রেন্ডারিং
-    // ============================================
+    // মেম্বার লোড
     onSnapshot(collection(db, "ekota_public_members"), (snapshot) => {
       allMembers = [];
-      snapshot.forEach((docSnap) => {
-        allMembers.push({ id: docSnap.id, ...docSnap.data() });
-      });
+      snapshot.forEach(d => allMembers.push({ id: d.id, ...d.data() }));
       renderMembers();
     });
 
@@ -583,128 +529,73 @@
       const bFilter = bloodFilter.value;
       const sortType = sortBy.value;
 
-      let advisorCount = 0;
-      let executiveCount = 0;
-      let generalCount = 0;
-
+      let adv = 0, exec = 0, gen = 0;
       allMembers.forEach(m => {
-        if (m.role === "উপদেষ্টা") advisorCount++;
-        else if (m.role === "সাধারণ সদস্য") generalCount++;
-        else executiveCount++;
+        if (m.role === "উপদেষ্টা") adv++;
+        else if (m.role === "সাধারণ সদস্য") gen++;
+        else exec++;
       });
 
       statTotalMembers.innerText = `${allMembers.length} জন`;
-      statAdvisor.innerText = `${advisorCount} জন`;
-      statExecutive.innerText = `${executiveCount} জন`;
-      statGeneral.innerText = `${generalCount} জন`;
+      statAdvisor.innerText = `${adv} জন`;
+      statExecutive.innerText = `${exec} জন`;
+      statGeneral.innerText = `${gen} জন`;
 
       let filtered = allMembers.filter(m => {
-        const matchesSearch = 
-          (m.name || "").toLowerCase().includes(qText) ||
-          (m.phone || "").includes(qText) ||
-          (m.role || "").toLowerCase().includes(qText) ||
-          (m.address || "").toLowerCase().includes(qText);
-
-        if (!matchesSearch) return false;
+        const match = (m.name||"").toLowerCase().includes(qText) || (m.phone||"").includes(qText);
+        if (!match) return false;
         if (filter !== "all" && m.role !== filter) return false;
         if (bFilter !== "all" && m.blood !== bFilter) return false;
         return true;
       });
 
       filtered.sort((a, b) => {
-        if (sortType === "role") {
-          const rankA = roleHierarchy[a.role] || 99;
-          const rankB = roleHierarchy[b.role] || 99;
-          if (rankA !== rankB) return rankA - rankB;
-          return (a.name || "").localeCompare(b.name || "", 'bn');
-        } else if (sortType === "name") {
-          return (a.name || "").localeCompare(b.name || "", 'bn');
-        } else if (sortType === "newest") {
-          return (b.createdAt || 0) - (a.createdAt || 0);
-        }
-        return 0;
+        if (sortType === "role") return (roleHierarchy[a.role] || 99) - (roleHierarchy[b.role] || 99);
+        return (a.name||"").localeCompare(b.name||"", 'bn');
       });
 
       membersList.innerHTML = "";
-
       if (filtered.length === 0) {
-        membersList.innerHTML = `
-          <div class="text-center py-10 text-slate-400">
-            <i class="fa-solid fa-user-xmark text-3xl mb-2 opacity-40"></i>
-            <p class="text-xs font-semibold">কোনো সদস্য পাওয়া যায়নি</p>
-          </div>
-        `;
+        membersList.innerHTML = `<p class="text-xs text-slate-400 text-center py-8">কোনো সদস্য পাওয়া যায়নি</p>`;
         return;
       }
 
       filtered.forEach((member) => {
         const cleanPhone = (member.phone || "").replace(/[^0-9]/g, '');
         const card = document.createElement("div");
-        card.className = "glass-card p-3.5 rounded-3xl flex flex-col gap-2.5 relative overflow-hidden group hover:border-emerald-500/40";
-
-        let roleBadgeClass = "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800";
-        if (member.role === "উপদেষ্টা" || member.role === "সভাপতি") {
-          roleBadgeClass = "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300 border-amber-300 dark:border-amber-800";
-        } else if (member.role === "সাধারণ সদস্য") {
-          roleBadgeClass = "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700";
-        }
+        card.className = "glass-card p-3 rounded-2xl flex flex-col gap-2 relative";
 
         const firstLetter = (member.name || "স").trim().charAt(0);
         const avatarHtml = member.photo 
-          ? `<img src="${member.photo}" class="w-11 h-11 rounded-2xl object-cover border border-emerald-500/30 shadow-md shrink-0">`
-          : `<div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-base shadow-md shrink-0">${firstLetter}</div>`;
+          ? `<img src="${member.photo}" class="w-10 h-10 rounded-xl object-cover border border-emerald-500/30 shrink-0">`
+          : `<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-sm shrink-0">${firstLetter}</div>`;
 
         card.innerHTML = `
           <div class="flex justify-between items-start gap-2">
-            <div class="flex items-start gap-2.5 flex-1 min-w-0">
+            <div class="flex items-start gap-2 flex-1 min-w-0">
               ${avatarHtml}
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-1.5 flex-wrap">
                   <h4 class="text-xs font-extrabold text-slate-800 dark:text-slate-100 truncate">${member.name}</h4>
-                  <span class="text-[9px] font-bold px-2 py-0.2 rounded-full border ${roleBadgeClass}">${member.role}</span>
+                  <span class="text-[9px] font-bold px-2 py-0.2 rounded-full border bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700">${member.role}</span>
                 </div>
-                
-                ${member.phone ? `
-                  <button onclick="navigator.clipboard.writeText('${member.phone}'); alert('নম্বর কপি হয়েছে!');" class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1 hover:text-emerald-600">
-                    <i class="fa-solid fa-phone text-emerald-600 text-[10px]"></i> 
-                    <span>${member.phone}</span>
-                    <i class="fa-regular fa-copy text-[9px] opacity-60"></i>
-                  </button>
-                ` : ''}
-
-                ${member.address ? `
-                  <p class="text-[10px] text-slate-400 mt-0.5 truncate">
-                    <i class="fa-solid fa-location-dot text-[9px]"></i> ${member.address}
-                  </p>
-                ` : ''}
+                ${member.phone ? `<button onclick="navigator.clipboard.writeText('${member.phone}'); alert('নম্বর কপি হয়েছে!');" class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1 hover:text-emerald-600"><i class="fa-solid fa-phone text-emerald-600 text-[10px]"></i> ${member.phone}</button>` : ''}
               </div>
             </div>
-
-            <div class="flex flex-col items-end gap-1.5 shrink-0">
-              ${member.blood ? `<span class="text-[9px] font-black text-rose-500 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/40 px-2 py-0.5 rounded-md">🩸 ${member.blood}</span>` : ''}
-            </div>
+            ${member.blood ? `<span class="text-[9px] font-black text-rose-500 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 px-1.5 py-0.5 rounded">🩸 ${member.blood}</span>` : ''}
           </div>
 
-          <div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-slate-800 text-[11px] action-buttons">
-            <div class="flex items-center gap-1.5">
+          <div class="flex justify-between items-center pt-1.5 border-t border-slate-100 dark:border-slate-800 text-xs">
+            <div class="flex gap-1">
               ${cleanPhone ? `
-                <a href="tel:${cleanPhone}" class="w-7 h-7 rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-xs shadow-sm">
-                  <i class="fa-solid fa-phone"></i>
-                </a>
-                <a href="https://wa.me/88${cleanPhone}" target="_blank" class="w-7 h-7 rounded-full bg-green-50 dark:bg-green-950 text-green-600 flex items-center justify-center text-xs shadow-sm">
-                  <i class="fa-brands fa-whatsapp"></i>
-                </a>
+                <a href="tel:${cleanPhone}" class="w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-[10px]"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://wa.me/88${cleanPhone}" target="_blank" class="w-6 h-6 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-xs"><i class="fa-brands fa-whatsapp"></i></a>
               ` : ''}
             </div>
-
             ${isAdmin ? `
-              <div class="flex items-center gap-1.5">
-                <button onclick="window.startEdit('${member.id}')" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2.5 py-1 rounded-xl text-[10px] font-semibold">
-                  এডিট
-                </button>
-                <button onclick="window.deleteMember('${member.id}')" class="text-rose-500 p-1 text-xs">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
+              <div class="flex gap-1.5">
+                <button onclick="window.startEdit('${member.id}')" class="text-slate-500 hover:text-emerald-600 text-[11px] font-bold">এডিট</button>
+                <button onclick="window.deleteMember('${member.id}')" class="text-rose-500 text-[11px]">মুছুন</button>
               </div>
             ` : ''}
           </div>
@@ -713,207 +604,53 @@
       });
     }
 
-    // সদস্য ফরম
-    const toggleFormBtn = document.getElementById("toggleFormBtn");
-    const toggleFormText = document.getElementById("toggleFormText");
-    const memberForm = document.getElementById("memberForm");
-    const editMemberId = document.getElementById("editMemberId");
-    const memberName = document.getElementById("memberName");
-    const memberRole = document.getElementById("memberRole");
-    const memberPhone = document.getElementById("memberPhone");
-    const memberBlood = document.getElementById("memberBlood");
-    const memberAddress = document.getElementById("memberAddress");
-    const photoInput = document.getElementById("photoInput");
-    const photoPreview = document.getElementById("photoPreview");
-    const memberPhotoBase64 = document.getElementById("memberPhotoBase64");
-    const removePhotoBtn = document.getElementById("removePhotoBtn");
-    const cancelEditBtn = document.getElementById("cancelEditBtn");
-    const submitBtnText = document.getElementById("submitBtnText");
-    const formTitle = document.getElementById("formTitle");
-
-    toggleFormBtn.onclick = () => {
-      if (!isAdmin) {
-        document.getElementById("loginModal").classList.remove("hidden");
-        return;
-      }
-      memberForm.classList.toggle("hidden");
-      toggleFormText.innerText = memberForm.classList.contains("hidden") ? "নতুন সদস্য যোগ" : "ফরম বন্ধ করুন";
-    };
-
-    photoInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const img = new Image();
-        img.onload = () => {
-          const c = document.createElement("canvas");
-          const MAX = 160;
-          let w = img.width, h = img.height;
-          if (w > h) { if (w > MAX) { h *= MAX / w; w = MAX; } }
-          else { if (h > MAX) { w *= MAX / h; h = MAX; } }
-          c.width = w; c.height = h;
-          c.getContext("2d").drawImage(img, 0, 0, w, h);
-          const dataUrl = c.toDataURL("image/jpeg", 0.7);
-          memberPhotoBase64.value = dataUrl;
-          photoPreview.innerHTML = `<img src="${dataUrl}" class="w-full h-full object-cover">`;
-          removePhotoBtn.classList.remove("hidden");
-        };
-        img.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-
-    removePhotoBtn.onclick = () => {
-      memberPhotoBase64.value = "";
-      photoInput.value = "";
-      photoPreview.innerHTML = `<i class="fa-solid fa-user"></i>`;
-      removePhotoBtn.classList.add("hidden");
-    };
-
-    memberForm.onsubmit = async (e) => {
-      e.preventDefault();
-      if (!isAdmin) return;
-
-      const editingId = editMemberId.value;
-      const memberData = {
-        name: memberName.value.trim(),
-        role: memberRole.value,
-        phone: memberPhone.value.trim(),
-        blood: memberBlood.value,
-        address: memberAddress.value.trim(),
-        photo: memberPhotoBase64.value || "",
-        updatedAt: Date.now()
-      };
-
-      try {
-        if (editingId) {
-          await updateDoc(doc(db, "ekota_public_members", editingId), memberData);
-          showToast("সদস্য তথ্য আপডেট হয়েছে!");
-        } else {
-          memberData.createdAt = Date.now();
-          await addDoc(collection(db, "ekota_public_members"), memberData);
-          showToast("নতুন সদস্য যুক্ত হয়েছে!");
-        }
-        resetForm();
-      } catch (err) {
-        alert("ত্রুটি: " + err.message);
-      }
-    };
-
-    cancelEditBtn.onclick = resetForm;
-
-    function resetForm() {
-      editMemberId.value = "";
-      memberForm.reset();
-      memberPhotoBase64.value = "";
-      photoPreview.innerHTML = `<i class="fa-solid fa-user"></i>`;
-      removePhotoBtn.classList.add("hidden");
-      formTitle.innerText = "সদস্যের তথ্য ফরম";
-      submitBtnText.innerText = "সংরক্ষণ করুন";
-      memberForm.classList.add("hidden");
-      toggleFormText.innerText = "নতুন সদস্য যোগ";
-    }
-
-    window.startEdit = (id) => {
-      const m = allMembers.find(mem => mem.id === id);
-      if (!m) return;
-      editMemberId.value = m.id;
-      memberName.value = m.name || "";
-      memberRole.value = m.role || "সাধারণ সদস্য";
-      memberPhone.value = m.phone || "";
-      memberBlood.value = m.blood || "";
-      memberAddress.value = m.address || "";
-      memberPhotoBase64.value = m.photo || "";
-
-      if (m.photo) {
-        photoPreview.innerHTML = `<img src="${m.photo}" class="w-full h-full object-cover">`;
-        removePhotoBtn.classList.remove("hidden");
-      } else {
-        photoPreview.innerHTML = `<i class="fa-solid fa-user"></i>`;
-        removePhotoBtn.classList.add("hidden");
-      }
-      
-      formTitle.innerText = "সদস্য তথ্য এডিট";
-      submitBtnText.innerText = "আপডেট করুন";
-      memberForm.classList.remove("hidden");
-      toggleFormText.innerText = "ফরম বন্ধ করুন";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    window.deleteMember = async (id) => {
-      if (confirm("আপনি কি নিশ্চিত এই সদস্যের তথ্য মুছে ফেলতে চান?")) {
-        await deleteDoc(doc(db, "ekota_public_members", id));
-        showToast("সদস্য মুছে ফেলা হয়েছে!");
-      }
-    };
-
-    // অ্যাডমিন লগইন ও নোটিশ
-    const adminLoginBtn = document.getElementById("adminLoginBtn");
-    const adminBtnText = document.getElementById("adminBtnText");
-    const loginModal = document.getElementById("loginModal");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const verifyLoginBtn = document.getElementById("verifyLoginBtn");
-    const clubUser = document.getElementById("clubUser");
-    const clubPass = document.getElementById("clubPass");
-    const showNoticeFormBtn = document.getElementById("showNoticeFormBtn");
-    const noticeAddForm = document.getElementById("noticeAddForm");
-    const newNoticeText = document.getElementById("newNoticeText");
-    const cancelNoticeFormBtn = document.getElementById("cancelNoticeFormBtn");
-    const noticesList = document.getElementById("noticesList");
-
-    function updateAdminUI() {
-      if (isAdmin) {
-        adminBtnText.innerText = "লগআউট";
-        adminLoginBtn.classList.add("text-rose-600");
-        showNoticeFormBtn.classList.remove("hidden");
-      } else {
-        adminBtnText.innerText = "ক্লাব লগইন";
-        adminLoginBtn.classList.remove("text-rose-600");
-        showNoticeFormBtn.classList.add("hidden");
-        noticeAddForm.classList.add("hidden");
-      }
-      renderMembers();
-      renderNotices();
-    }
-
-    adminLoginBtn.onclick = () => {
+    // অ্যাডমিন ভেরিফিকেশন ও এডিট
+    document.getElementById("adminLoginBtn").onclick = () => {
       if (isAdmin) {
         localStorage.removeItem("ekota_admin_logged");
         isAdmin = false;
         showToast("লগআউট হয়েছে");
         updateAdminUI();
       } else {
-        loginModal.classList.remove("hidden");
+        document.getElementById("loginModal").classList.remove("hidden");
       }
     };
-
-    closeModalBtn.onclick = () => loginModal.classList.add("hidden");
-
-    verifyLoginBtn.onclick = () => {
-      if (clubUser.value.trim() === CLUB_AUTH.username && clubPass.value.trim() === CLUB_AUTH.password) {
+    document.getElementById("closeModalBtn").onclick = () => document.getElementById("loginModal").classList.add("hidden");
+    document.getElementById("verifyLoginBtn").onclick = () => {
+      if (document.getElementById("clubUser").value.trim() === CLUB_AUTH.username && document.getElementById("clubPass").value.trim() === CLUB_AUTH.password) {
         isAdmin = true;
         localStorage.setItem("ekota_admin_logged", "true");
-        loginModal.classList.add("hidden");
-        clubUser.value = "";
-        clubPass.value = "";
-        showToast("ক্লাব লগইন সফল!");
+        document.getElementById("loginModal").classList.add("hidden");
+        showToast("লগইন সফল!");
         updateAdminUI();
       } else {
         alert("ভুল পাসওয়ার্ড!");
       }
     };
 
-    showNoticeFormBtn.onclick = () => noticeAddForm.classList.toggle("hidden");
-    cancelNoticeFormBtn.onclick = () => noticeAddForm.classList.add("hidden");
+    function updateAdminUI() {
+      const btn = document.getElementById("adminBtnText");
+      if (isAdmin) {
+        btn.innerText = "লগআউট";
+        document.getElementById("showNoticeFormBtn").classList.remove("hidden");
+      } else {
+        btn.innerText = "ক্লাব লগইন";
+        document.getElementById("showNoticeFormBtn").classList.add("hidden");
+      }
+      renderMembers();
+      renderNotices();
+    }
 
-    noticeAddForm.onsubmit = async (e) => {
+    // নোটিশ
+    document.getElementById("showNoticeFormBtn").onclick = () => document.getElementById("noticeAddForm").classList.toggle("hidden");
+    document.getElementById("cancelNoticeFormBtn").onclick = () => document.getElementById("noticeAddForm").classList.add("hidden");
+    document.getElementById("noticeAddForm").onsubmit = async (e) => {
       e.preventDefault();
-      const txt = newNoticeText.value.trim();
+      const txt = document.getElementById("newNoticeText").value.trim();
       if (!txt) return;
       await addDoc(collection(db, "ekota_club_notices"), { text: txt, createdAt: Date.now() });
-      newNoticeText.value = "";
-      noticeAddForm.classList.add("hidden");
+      document.getElementById("newNoticeText").value = "";
+      document.getElementById("noticeAddForm").classList.add("hidden");
       showToast("নোটিশ পোস্ট হয়েছে!");
     };
 
@@ -925,36 +662,35 @@
 
     function renderNotices() {
       allNotices.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      const box = document.getElementById("noticesList");
       if (allNotices.length === 0) {
-        noticesList.innerHTML = `<p class="text-[11px] text-slate-400 text-center py-1">কোনো নোটিশ নেই</p>`;
+        box.innerHTML = `<p class="text-[11px] text-slate-400 text-center py-1">কোনো নোটিশ নেই</p>`;
         return;
       }
-      noticesList.innerHTML = "";
-      allNotices.forEach((item, idx) => {
-        const d = new Date(item.createdAt).toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
-        const el = document.createElement("div");
-        el.className = `p-2.5 rounded-2xl border flex justify-between gap-2 text-xs ${idx === 0 ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800' : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-800'}`;
-        el.innerHTML = `
-          <div class="space-y-0.5">
-            <span class="text-[9px] font-bold text-slate-400">${d}</span>
-            <p class="text-slate-700 dark:text-slate-200 font-medium whitespace-pre-wrap">${item.text}</p>
+      box.innerHTML = "";
+      allNotices.forEach(item => {
+        box.innerHTML += `
+          <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex justify-between gap-2 text-xs">
+            <p class="text-slate-700 dark:text-slate-200">${item.text}</p>
+            ${isAdmin ? `<button onclick="window.deleteNotice('${item.id}')" class="text-rose-500 text-xs">✕</button>` : ''}
           </div>
-          ${isAdmin ? `<button onclick="window.deleteNotice('${item.id}')" class="text-rose-500 text-xs p-1">✕</button>` : ''}
         `;
-        noticesList.appendChild(el);
       });
     }
 
     window.deleteNotice = async (id) => {
-      if (confirm("নোটিশ মুছে ফেলতে চান?")) await deleteDoc(doc(db, "ekota_club_notices", id));
+      if (confirm("নোটিশ মুছবেন?")) await deleteDoc(doc(db, "ekota_club_notices", id));
     };
 
-    // পেনাল্টি শ্যুটআউট গেম ইঞ্জিন
+    // ============================================
+    // পেনাল্টি শ্যুটআউট চ্যালেঞ্জ ইঞ্জিন (কঠিন ও ব্যালান্সড)
+    // ============================================
     const openGameBtn = document.getElementById("openGameBtn");
     const closeGameBtn = document.getElementById("closeGameBtn");
     const gameModal = document.getElementById("gameModal");
     const pCanvas = document.getElementById("penaltyCanvas");
     const pCtx = pCanvas.getContext("2d");
+
     const gameStartOverlay = document.getElementById("gameStartOverlay");
     const gameOverOverlay = document.getElementById("gameOverOverlay");
     const shotStatusFlash = document.getElementById("shotStatusFlash");
@@ -965,93 +701,166 @@
     const currentScoreDisplay = document.getElementById("currentScoreDisplay");
     const livesDisplay = document.getElementById("livesDisplay");
     const finalScoreVal = document.getElementById("finalScoreVal");
+    const leaderboardList = document.getElementById("leaderboardList");
 
     let isGameRunning = false, pScore = 0, pLives = 3, pAnimId = null;
-    let goal = { x: 50, y: 55, width: 260, height: 105 };
-    let keeper = { x: 180, y: 125, width: 40, height: 50, vx: 2.2, diving: false };
-    let ball = { x: 180, y: 340, radius: 18, scale: 1, vx: 0, vy: 0, flight: false, rot: 0 };
+    
+    // কমপ্যাক্ট গোলপোস্ট ডাইমেনশন
+    let goal = { x: 45, y: 35, width: 250, height: 80 };
+    
+    // কঠিন ও শক্তিশালী গোলকিপার (গতি ও চওড়া বাড়ানো হয়েছে)
+    let keeper = {
+      x: 170,
+      y: 90,
+      width: 52,        // বড় গোলকিপার বডি
+      height: 48,
+      vx: 4.8,          // দ্রুত ডানে-বামে স্পিড
+      targetX: 170,
+      diving: false
+    };
+
+    let ball = {
+      x: 170,
+      y: 235,
+      radius: 16,
+      scale: 1,
+      vx: 0,
+      vy: 0,
+      flight: false,
+      rot: 0
+    };
+
     let dragPos = null;
 
     openGameBtn.onclick = () => {
       gameModal.classList.remove("hidden");
       setTimeout(() => {
-        goal.width = pCanvas.width * 0.72;
+        goal.width = pCanvas.width * 0.74;
         goal.x = (pCanvas.width - goal.width) / 2;
         resetPBall();
         drawPScene();
       }, 50);
     };
-    closeGameBtn.onclick = () => { isGameRunning = false; gameModal.classList.add("hidden"); };
+
+    closeGameBtn.onclick = () => {
+      isGameRunning = false;
+      if (pAnimId) cancelAnimationFrame(pAnimId);
+      gameModal.classList.add("hidden");
+    };
 
     function resetPBall() {
-      ball.x = pCanvas.width / 2; ball.y = pCanvas.height - 60;
-      ball.radius = 18; ball.scale = 1; ball.vx = 0; ball.vy = 0;
-      ball.flight = false; keeper.diving = false;
+      ball.x = pCanvas.width / 2;
+      ball.y = pCanvas.height - 35;
+      ball.radius = 16;
+      ball.scale = 1;
+      ball.vx = 0;
+      ball.vy = 0;
+      ball.flight = false;
+      keeper.diving = false;
     }
 
     startPlayBtn.onclick = () => {
-      isGameRunning = true; pScore = 0; pLives = 3;
+      isGameRunning = true;
+      pScore = 0;
+      pLives = 3;
+      keeper.vx = 4.8;
       currentScoreDisplay.innerText = "০";
       livesDisplay.innerText = "❤️❤️❤️";
       gameStartOverlay.classList.add("hidden");
       gameOverOverlay.classList.add("hidden");
       resetPBall();
+      if (pAnimId) cancelAnimationFrame(pAnimId);
       pLoop();
     };
     restartGameBtn.onclick = startPlayBtn.onclick;
 
     function pLoop() {
       if (!isGameRunning) return;
+
+      // কিপারের স্বাভাবিক দ্রুত নড়াচড়া
       if (!keeper.diving) {
         keeper.x += keeper.vx;
-        if (keeper.x < goal.x + 20 || keeper.x > goal.x + goal.width - 20) keeper.vx *= -1;
+        const leftLimit = goal.x + keeper.width / 2;
+        const rightLimit = goal.x + goal.width - keeper.width / 2;
+        if (keeper.x < leftLimit || keeper.x > rightLimit) {
+          keeper.vx *= -1;
+        }
+      } else {
+        // বল শট নিলে কিপারের বিদ্যুৎগতির ডাইভ
+        keeper.x += (keeper.targetX - keeper.x) * 0.35;
       }
+
+      // বলের ফ্লাইট
       if (ball.flight) {
-        ball.x += ball.vx; ball.y += ball.vy;
-        ball.scale = Math.max(0.48, ball.scale - 0.024);
-        ball.rot += 0.25;
-        if (ball.y <= goal.y + goal.height) {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.scale = Math.max(0.48, ball.scale - 0.03);
+        ball.rot += 0.3;
+
+        // গোলপোস্ট লাইনে পৌঁছালে আউটকাম চেক
+        if (ball.y <= goal.y + goal.height - 5) {
           checkPOutcome();
           return;
         }
       }
+
       drawPScene();
       pAnimId = requestAnimationFrame(pLoop);
     }
 
     function checkPOutcome() {
-      const isInside = (ball.x >= goal.x + 8 && ball.x <= goal.x + goal.width - 8 && ball.y >= goal.y);
-      const isSaved = Math.abs(ball.x - keeper.x) < 25;
+      // গোলপোস্টের ভেতরে কি না
+      const insideGoal = (
+        ball.x >= goal.x + 8 && 
+        ball.x <= goal.x + goal.width - 8 && 
+        ball.y >= goal.y + 4
+      );
+
+      // কিপারের সেভ রেঞ্জ (হিটবক্স বাড়িয়ে কঠিন করা হলো)
+      const distFromKeeper = Math.abs(ball.x - keeper.x);
+      const isSaved = distFromKeeper < 36; // কিপারের কাছে গেলেই আটকে যাবে
 
       if (isSaved) {
-        pLives--; flashMsg("আটকে গেছে! 🧤", "text-rose-400");
-      } else if (isInside) {
-        pScore++; currentScoreDisplay.innerText = pScore;
+        pLives--;
+        flashMsg("আটকে গেছে! 🧤", "text-rose-400");
+      } else if (insideGoal) {
+        pScore++;
+        currentScoreDisplay.innerText = pScore;
         flashMsg("গোল! ⚽🔥", "text-amber-300");
+        // প্রতিটি গোলের পর কিপারের গতি বৃদ্ধি
+        keeper.vx = (keeper.vx > 0 ? 1 : -1) * (4.8 + pScore * 0.25);
       } else {
-        pLives--; flashMsg("বাইরে গেছে ❌", "text-rose-400");
+        pLives--;
+        flashMsg("বাইরে গেছে ❌", "text-rose-400");
       }
 
-      let h = ""; for (let i = 0; i < pLives; i++) h += "❤️";
-      livesDisplay.innerText = h || "🖤";
+      let h = "";
+      for (let i = 0; i < pLives; i++) h += "❤️";
+      for (let i = pLives; i < 3; i++) h += "🖤";
+      livesDisplay.innerText = h;
 
       if (pLives <= 0) {
         setTimeout(() => {
           isGameRunning = false;
           finalScoreVal.innerText = pScore;
           gameOverOverlay.classList.remove("hidden");
+          drawPScene();
         }, 500);
       } else {
-        setTimeout(() => { resetPBall(); if (isGameRunning) pLoop(); }, 700);
+        setTimeout(() => {
+          resetPBall();
+          if (isGameRunning) pLoop();
+        }, 750);
       }
     }
 
     function flashMsg(txt, cls) {
       shotStatusFlash.innerText = txt;
-      shotStatusFlash.className = `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-2xl drop-shadow-lg z-15 ${cls}`;
+      shotStatusFlash.className = `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xl drop-shadow-lg z-15 ${cls}`;
       setTimeout(() => shotStatusFlash.className += " opacity-0", 600);
     }
 
+    // ড্র্যাগ / সুইপ ইভেন্ট
     pCanvas.addEventListener("touchstart", (e) => {
       e.preventDefault();
       if (!isGameRunning || ball.flight) return;
@@ -1065,50 +874,134 @@
       const r = pCanvas.getBoundingClientRect();
       const end = { x: e.changedTouches[0].clientX - r.left, y: e.changedTouches[0].clientY - r.top };
       const dy = end.y - dragPos.y;
-      if (dy < -20) {
+
+      if (dy < -18) {
         ball.flight = true;
-        ball.vx = (end.x - dragPos.x) * 0.16;
-        ball.vy = dy * 0.18;
+        ball.vx = (end.x - dragPos.x) * 0.17;
+        ball.vy = dy * 0.2;
         keeper.diving = true;
+        
+        // কিপারের টার্গেট রিঅ্যাকশন (বলের দিকে দ্রুত ঝাঁপ)
+        const predictedX = ball.x + ball.vx * 10;
+        keeper.targetX = predictedX;
       }
       dragPos = null;
     }, { passive: false });
 
     function drawPScene() {
       pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+
+      // সবুজ মাঠ
+      const fieldY = 100;
       pCtx.fillStyle = "#15803d";
-      pCtx.fillRect(0, 150, pCanvas.width, pCanvas.height - 150);
+      pCtx.fillRect(0, fieldY, pCanvas.width, pCanvas.height - fieldY);
+
+      // গোলপোস্ট ব্যাকগ্রাউন্ড ও জাল
+      pCtx.fillStyle = "rgba(255,255,255,0.14)";
+      pCtx.fillRect(goal.x, goal.y, goal.width, goal.height);
 
       pCtx.strokeStyle = "rgba(255,255,255,0.2)";
-      pCtx.strokeRect(goal.x, goal.y, goal.width, goal.height);
-      pCtx.strokeStyle = "#ffffff"; pCtx.lineWidth = 5;
+      pCtx.lineWidth = 1;
+      for (let x = goal.x; x <= goal.x + goal.width; x += 14) {
+        pCtx.beginPath(); pCtx.moveTo(x, goal.y); pCtx.lineTo(x, goal.y + goal.height); pCtx.stroke();
+      }
+      for (let y = goal.y; y <= goal.y + goal.height; y += 14) {
+        pCtx.beginPath(); pCtx.moveTo(goal.x, y); pCtx.lineTo(goal.x + goal.width, y); pCtx.stroke();
+      }
+
+      // গোলপোস্ট ফ্রেম
+      pCtx.strokeStyle = "#ffffff";
+      pCtx.lineWidth = 5;
       pCtx.strokeRect(goal.x, goal.y, goal.width, goal.height);
 
-      pCtx.fillStyle = "#f59e0b";
-      pCtx.fillRect(keeper.x - 18, keeper.y - 20, 36, 40);
+      // গোলকিপার (জার্সি ও গ্লাভস)
+      pCtx.save();
+      pCtx.translate(keeper.x, keeper.y);
+      pCtx.fillStyle = "#f59e0b"; // হলুদ জার্সি
+      pCtx.fillRect(-keeper.width / 2, -keeper.height / 2 + 10, keeper.width, keeper.height - 10);
+      
+      // মাথা
       pCtx.fillStyle = "#fcd34d";
-      pCtx.beginPath(); pCtx.arc(keeper.x, keeper.y - 26, 9, 0, Math.PI * 2); pCtx.fill();
+      pCtx.beginPath(); pCtx.arc(0, -keeper.height / 2 + 5, 10, 0, Math.PI * 2); pCtx.fill();
 
+      // গ্লাভস
+      pCtx.fillStyle = "#ef4444";
+      pCtx.beginPath();
+      pCtx.arc(-keeper.width / 2 - 2, 0, 6, 0, Math.PI * 2);
+      pCtx.arc(keeper.width / 2 + 2, 0, 6, 0, Math.PI * 2);
+      pCtx.fill();
+      pCtx.restore();
+
+      // ফুটবল অঙ্কন
       pCtx.save();
       pCtx.translate(ball.x, ball.y);
       pCtx.rotate(ball.rot);
       pCtx.beginPath();
       pCtx.arc(0, 0, ball.radius * ball.scale, 0, Math.PI * 2);
-      pCtx.fillStyle = "#ffffff"; pCtx.fill();
+      pCtx.fillStyle = "#ffffff";
+      pCtx.fill();
+      pCtx.lineWidth = 2;
+      pCtx.strokeStyle = "#0f172a";
       pCtx.stroke();
       pCtx.fillStyle = "#0f172a";
-      pCtx.beginPath(); pCtx.arc(0, 0, ball.radius * ball.scale * 0.4, 0, Math.PI * 2); pCtx.fill();
+      pCtx.beginPath();
+      pCtx.arc(0, 0, ball.radius * ball.scale * 0.45, 0, Math.PI * 2);
+      pCtx.fill();
       pCtx.restore();
     }
 
+    // লিডারবোর্ড সিঙ্ক
     submitScoreBtn.onclick = async () => {
       const name = playerNameInput.value.trim();
-      if (!name || pScore <= 0) return alert("সঠিক নাম ও স্কোর প্রয়োজন");
-      await addDoc(collection(db, "ekota_football_scores"), { name, score: pScore, timestamp: Date.now() });
-      showToast("স্কোর সংরক্ষিত!");
-      playerNameInput.value = "";
-      startPlayBtn.click();
+      if (!name) return alert("অনুগ্রহ করে আপনার নাম লিখুন!");
+      if (pScore <= 0) return alert("অন্তত ১টি গোল করতে হবে!");
+
+      try {
+        await addDoc(collection(db, "ekota_football_scores"), {
+          name: name,
+          score: pScore,
+          timestamp: Date.now()
+        });
+        showToast("স্কোর লিডারবোর্ডে যুক্ত হয়েছে! 🏆");
+        playerNameInput.value = "";
+        startPlayBtn.click();
+      } catch (err) {
+        alert("ত্রুটি: " + err.message);
+      }
     };
+
+    onSnapshot(collection(db, "ekota_football_scores"), (snapshot) => {
+      allLeaderboard = [];
+      snapshot.forEach(d => allLeaderboard.push(d.data()));
+      renderLeaderboard();
+    });
+
+    function renderLeaderboard() {
+      allLeaderboard.sort((a, b) => (b.score || 0) - (a.score || 0));
+      const top5 = allLeaderboard.slice(0, 5);
+
+      if (top5.length === 0) {
+        leaderboardList.innerHTML = `<p class="text-[10px] text-slate-400 text-center py-1">এখনও কেউ স্কোর জমা দেয়নি। প্রথম স্কোর করুন!</p>`;
+        return;
+      }
+
+      leaderboardList.innerHTML = "";
+      top5.forEach((item, idx) => {
+        const medals = ["🥇", "🥈", "🥉", "৪.", "৫."];
+        const row = document.createElement("div");
+        row.className = "flex justify-between items-center text-[11px] py-1 px-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700";
+        row.innerHTML = `
+          <div class="flex items-center gap-1.5">
+            <span class="font-bold">${medals[idx] || (idx+1)+'.'}</span>
+            <span class="font-bold text-slate-700 dark:text-slate-200">${item.name}</span>
+          </div>
+          <span class="font-black text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-1.5 py-0.5 rounded text-[10px]">
+            ${item.score} গোল
+          </span>
+        `;
+        leaderboardList.appendChild(row);
+      });
+    }
 
     updateAdminUI();
   </script>
