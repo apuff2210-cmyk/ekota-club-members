@@ -90,9 +90,9 @@
       </div>
 
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- ফুটবল খেলা বাটন -->
-        <button id="openGameBtn" class="bg-amber-500 hover:bg-amber-600 active:scale-95 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md shadow-amber-500/30 transition flex items-center gap-1 animate-bounce" title="ফুটবল জাগলিং চ্যালেঞ্জ">
-          <span>⚽</span> <span>খেলা</span>
+        <!-- পেনাল্টি শ্যুটআউট বাটন -->
+        <button id="openGameBtn" class="bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 active:scale-95 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md shadow-amber-500/30 transition flex items-center gap-1.5 animate-bounce" title="পেনাল্টি শ্যুটআউট চ্যালেঞ্জ">
+          <span>⚽</span> <span>পেনাল্টি</span>
         </button>
 
         <!-- Dark Mode Toggle -->
@@ -117,7 +117,7 @@
       <img src="banner.png" alt="একতা ক্লাব ব্যানার" class="w-full max-h-48 object-cover group-hover:scale-105 transition duration-500" onerror="this.style.display='none'">
     </div>
 
-    <!-- নোটিশ বোর্ড সেকশন (একাধিক নোটিশ) -->
+    <!-- নোটিশ বোর্ড সেকশন -->
     <div id="noticeSection" class="glass-card p-3.5 rounded-3xl space-y-2.5 shadow-sm">
       <div class="flex justify-between items-center px-1">
         <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 flex items-center gap-1.5">
@@ -190,7 +190,7 @@
           </div>
           <div class="flex-1">
             <label class="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">সদস্যের ছবি (গ্যালারি বা ক্যামেরা)</label>
-            <p class="text-[10px] text-slate-500 dark:text-slate-400">যেকোনো সাইজের ছবি স্বয়ংক্রিয়ভাবে ছোট হয়ে যাবে</p>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400">যে কেউ নিজের বা অন্য সদস্যের ছবি আপলোড করতে পারবেন</p>
             <div class="flex items-center gap-2 mt-1">
               <label class="cursor-pointer bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-xl text-[11px] font-bold shadow-sm transition inline-flex items-center gap-1">
                 <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> ছবি বাছুন
@@ -307,57 +307,60 @@
     </main>
   </div>
 
-  <!-- ফুটবল খেলা মডাল (বড় স্ক্রিন ও আরামদায়ক ভিউ) -->
+  <!-- পেনাল্টি শ্যুটআউট গেম মডাল -->
   <div id="gameModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
     <div class="glass-card bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-3 max-h-[96vh] overflow-y-auto">
       
       <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
         <div class="flex items-center gap-2">
-          <span class="text-xl">⚽</span>
+          <span class="text-xl">🥅</span>
           <div>
-            <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 leading-tight">ফুটবল জাগলিং চ্যালেঞ্জ</h3>
-            <p class="text-[10px] text-slate-500">স্ক্রিনের যেকোনো জায়গায় ট্যাপ করে বল ভাসিয়ে রাখুন</p>
+            <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 leading-tight">পেনাল্টি শ্যুটআউট চ্যালেঞ্জ</h3>
+            <p class="text-[10px] text-slate-500">বল টেনে পোস্টের কোণে সুইপ করে গোল দিন!</p>
           </div>
         </div>
         <button id="closeGameBtn" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-500 hover:text-rose-600 flex items-center justify-center font-bold text-sm">✕</button>
       </div>
 
-      <!-- গেম ক্যানভাস এরিয়া (বড় ডিসপ্লে) -->
-      <div class="relative w-full rounded-2xl overflow-hidden border-2 border-emerald-500/40 bg-gradient-to-b from-sky-400 via-sky-200 to-emerald-600 shadow-inner flex flex-col items-center select-none" style="touch-action: none;">
+      <!-- গেম ক্যানভাস এরিয়া -->
+      <div class="relative w-full rounded-2xl overflow-hidden border-2 border-emerald-500/40 bg-gradient-to-b from-sky-400 via-emerald-600 to-emerald-800 shadow-inner flex flex-col items-center select-none" style="touch-action: none;">
         
-        <!-- লাইভ স্কোরবোর্ড ওভারলে -->
+        <!-- লাইভ স্কোর ও লাইফ ডিসপ্লে -->
         <div class="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none z-10">
-          <div class="bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20">
-            কিক: <span id="currentScoreDisplay" class="text-amber-300 text-base font-black">০</span>
+          <div class="bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20 flex items-center gap-1.5">
+            <span>গোল:</span> <span id="currentScoreDisplay" class="text-amber-300 text-base font-black">০</span>
           </div>
-          <div class="bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20">
-            সর্বোচ্চ: <span id="highScoreDisplay" class="text-emerald-300 text-base font-black">০</span>
+          <!-- ৩টি লাইফ -->
+          <div class="bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-xl text-xs font-bold border border-white/20">
+            <span id="livesDisplay">❤️❤️❤️</span>
           </div>
         </div>
 
-        <!-- বড় সাইজের ক্যানভাস -->
-        <canvas id="footballCanvas" width="360" height="420" class="w-full h-[360px] sm:h-[420px] block cursor-pointer"></canvas>
+        <!-- গেম ক্যানভাস -->
+        <canvas id="penaltyCanvas" width="360" height="420" class="w-full h-[360px] sm:h-[420px] block cursor-crosshair"></canvas>
 
-        <!-- খেলা শুরুর মেসেজ -->
-        <div id="gameStartOverlay" class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-4 z-20">
-          <div class="w-16 h-16 rounded-full bg-white/90 shadow-xl flex items-center justify-center text-3xl mb-2 animate-bounce">
+        <!-- খেলা শুরুর ওভারলে -->
+        <div id="gameStartOverlay" class="absolute inset-0 bg-slate-950/50 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-4 z-20">
+          <div class="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center text-3xl mb-2 animate-bounce">
             ⚽
           </div>
-          <h4 class="text-base font-black text-white drop-shadow-md">ট্যাপ করে খেলা শুরু করুন</h4>
-          <p class="text-xs text-white/90 mt-1 max-w-[240px]">বল নিচে পড়ার আগে স্ক্রিনের যেকোনো জায়গায় ট্যাপ করে কিক মারুন!</p>
-          <button id="startPlayBtn" class="mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-2.5 rounded-2xl shadow-lg active:scale-95 transition text-sm">
-            খেলা শুরু
+          <h4 class="text-base font-black text-white drop-shadow-md">পেনাল্টি শট নিতে প্রস্তুত?</h4>
+          <p class="text-xs text-white/90 mt-1 max-w-[240px]">নিচের ফুটবলটি চেপে ধরে গোলপোস্টের দিকে সুইপ (টেনে ছেড়ে) করুন!</p>
+          <button id="startPlayBtn" class="mt-4 bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-600 hover:to-emerald-600 text-white font-extrabold px-6 py-2.5 rounded-2xl shadow-lg active:scale-95 transition text-sm">
+            শুরু করুন 🥅
           </button>
         </div>
 
+        <!-- গোল / মিস নোটিফিকেশন ফ্লাশ -->
+        <div id="shotStatusFlash" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-2xl drop-shadow-lg pointer-events-none transition-all duration-300 transform scale-50 opacity-0 z-15"></div>
+
         <!-- গেম ওভার ওভারলে -->
-        <div id="gameOverOverlay" class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 z-20 hidden">
+        <div id="gameOverOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 z-20 hidden">
           <div class="text-3xl mb-1">🏁</div>
-          <h4 class="text-lg font-black text-rose-400">আউট! বল মাটিতে পড়েছে</h4>
-          <p class="text-white text-xs mt-0.5">আপনার মোট কিক স্কোর:</p>
+          <h4 class="text-lg font-black text-rose-400">খেলা সমাপ্ত! (৩ বার মিস)</h4>
+          <p class="text-white text-xs mt-0.5">আপনার মোট সফল গোল:</p>
           <div id="finalScoreVal" class="text-4xl font-black text-amber-300 my-1">০</div>
 
-          <!-- নাম দিয়ে স্কোর সেভ -->
           <div class="w-full max-w-[260px] space-y-2 mt-2">
             <input type="text" id="playerNameInput" placeholder="আপনার নাম লিখুন..." class="w-full app-input px-3 py-1.5 rounded-xl text-xs text-center font-bold">
             <div class="flex gap-2">
@@ -372,10 +375,10 @@
         </div>
       </div>
 
-      <!-- ক্লাবের শীর্ষ স্কোরার লিডারবোর্ড -->
+      <!-- সেরা স্কোরার লিডারবোর্ড -->
       <div class="border-t border-slate-100 dark:border-slate-800 pt-2 space-y-1.5">
         <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-500"></i> সেরা ৫ স্কোরার</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-500"></i> সেরা পেনাল্টি শুটার</span>
           <span class="text-[10px] text-slate-400 font-normal">একতা ক্লাব লিডারবোর্ড</span>
         </h4>
         <div id="leaderboardList" class="space-y-1 max-h-32 overflow-y-auto pr-1">
@@ -598,7 +601,7 @@
       reader.onload = (event) => {
         const img = new Image();
         img.onload = () => {
-          const canvas = document.createElement("canvas");
+          const canvasEl = document.createElement("canvas");
           const MAX_SIZE = 180;
           let width = img.width;
           let height = img.height;
@@ -615,12 +618,12 @@
             }
           }
 
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, width, height);
+          canvasEl.width = width;
+          canvasEl.height = height;
+          const c = canvasEl.getContext("2d");
+          c.drawImage(img, 0, 0, width, height);
 
-          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.7);
+          const compressedDataUrl = canvasEl.toDataURL("image/jpeg", 0.7);
           memberPhotoBase64.value = compressedDataUrl;
           photoPreview.innerHTML = `<img src="${compressedDataUrl}" class="w-full h-full object-cover">`;
           removePhotoBtn.classList.remove("hidden");
@@ -1057,55 +1060,81 @@
     };
 
     // ============================================
-    // ফুটবল জাগলিং চ্যালেঞ্জ (সহজ ও আরামদায়ক ফুলস্ক্রিন ইঞ্জিন)
+    // পেনাল্টি শ্যুটআউট চ্যালেঞ্জ ইঞ্জিন (Swipe to Shoot)
     // ============================================
     const openGameBtn = document.getElementById("openGameBtn");
     const closeGameBtn = document.getElementById("closeGameBtn");
     const gameModal = document.getElementById("gameModal");
-    const canvas = document.getElementById("footballCanvas");
+    const canvas = document.getElementById("penaltyCanvas");
     const ctx = canvas.getContext("2d");
 
     const gameStartOverlay = document.getElementById("gameStartOverlay");
     const gameOverOverlay = document.getElementById("gameOverOverlay");
+    const shotStatusFlash = document.getElementById("shotStatusFlash");
     const startPlayBtn = document.getElementById("startPlayBtn");
     const restartGameBtn = document.getElementById("restartGameBtn");
     const submitScoreBtn = document.getElementById("submitScoreBtn");
     const playerNameInput = document.getElementById("playerNameInput");
     const currentScoreDisplay = document.getElementById("currentScoreDisplay");
-    const highScoreDisplay = document.getElementById("highScoreDisplay");
+    const livesDisplay = document.getElementById("livesDisplay");
     const finalScoreVal = document.getElementById("finalScoreVal");
     const leaderboardList = document.getElementById("leaderboardList");
 
     let isGameRunning = false;
     let score = 0;
-    let localHighScore = parseInt(localStorage.getItem("ekota_juggle_high") || "0", 10);
-    highScoreDisplay.innerText = localHighScore;
-
-    // বলের প্রোপার্টিজ (আকার বড় ও আরামদায়ক গ্র্যাভিটি)
-    let ball = {
-      x: 180,
-      y: 180,
-      radius: 34,        // বড় বল
-      vx: 0,
-      vy: 0,
-      gravity: 0.28,     // নরম গ্র্যাভিটি, বল ধীরে পড়বে
-      rotation: 0
-    };
-
+    let lives = 3;
     let animationFrameId = null;
 
-    function resizeGameCanvas() {
+    // পোস্ট ও ফিল্ড ডাইমেনশন
+    const goalPost = {
+      x: 55,
+      y: 65,
+      width: 250,
+      height: 110
+    };
+
+    // কিপার প্রোপার্টিজ
+    const keeper = {
+      x: 180,
+      y: 135,
+      width: 44,
+      height: 52,
+      vx: 2.2,
+      targetX: 180,
+      isDiving: false
+    };
+
+    // বল প্রোপার্টিজ
+    const ballDefault = {
+      x: 180,
+      y: 350,
+      radius: 20,
+      targetRadius: 10,
+      vx: 0,
+      vy: 0,
+      inFlight: false,
+      rotation: 0,
+      scale: 1
+    };
+
+    let ball = { ...ballDefault };
+    let dragStart = null;
+
+    function resizeCanvas() {
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width || 360;
       canvas.height = rect.height || 420;
+      goalPost.width = canvas.width * 0.72;
+      goalPost.x = (canvas.width - goalPost.width) / 2;
+      resetBall();
     }
 
     openGameBtn.onclick = () => {
       gameModal.classList.remove("hidden");
       setTimeout(() => {
-        resizeGameCanvas();
-        resetBall();
-        drawScene();
+        resizeCanvas();
+        resetGameVariables();
+        drawPenaltyScene();
       }, 50);
     };
 
@@ -1114,23 +1143,39 @@
       gameModal.classList.add("hidden");
     };
 
+    function resetGameVariables() {
+      score = 0;
+      lives = 3;
+      currentScoreDisplay.innerText = "০";
+      updateLivesUI();
+      keeper.vx = 2.2;
+      resetBall();
+    }
+
+    function updateLivesUI() {
+      let hearts = "";
+      for (let i = 0; i < lives; i++) hearts += "❤️";
+      for (let i = lives; i < 3; i++) hearts += "🖤";
+      livesDisplay.innerText = hearts;
+    }
+
     function resetBall() {
       ball.x = canvas.width / 2;
-      ball.y = canvas.height * 0.42;
+      ball.y = canvas.height - 65;
+      ball.radius = 20;
       ball.vx = 0;
-      ball.vy = -3;
-      ball.rotation = 0;
+      ball.vy = 0;
+      ball.inFlight = false;
+      ball.scale = 1;
+      keeper.isDiving = false;
     }
 
     function startGame() {
-      resizeGameCanvas();
+      resizeCanvas();
       isGameRunning = true;
-      score = 0;
-      currentScoreDisplay.innerText = "০";
+      resetGameVariables();
       gameStartOverlay.classList.add("hidden");
       gameOverOverlay.classList.add("hidden");
-      resetBall();
-      
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       gameLoop();
     }
@@ -1143,135 +1188,268 @@
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     }
 
-    function handleKick() {
-      if (!isGameRunning) {
-        startGame();
-        return;
-      }
+    function flashMessage(text, color) {
+      shotStatusFlash.innerText = text;
+      shotStatusFlash.className = `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-3xl drop-shadow-lg pointer-events-none transition-all duration-300 transform scale-110 opacity-100 z-15 ${color}`;
+      setTimeout(() => {
+        shotStatusFlash.classList.add("opacity-0", "scale-50");
+      }, 700);
+    }
 
-      // বলের ওপর হালকা আপওয়ার্ড পুশ
-      ball.vy = -10.5; // বল লাফিয়ে উপরে উঠবে
-      // বল এদিক-সেদিক একটু দুলবে যাতে জীবন্ত মনে হয়
-      ball.vx = (Math.random() - 0.5) * 4; 
-      ball.rotation += 0.35;
+    // ড্র্যাগ / সুইপ ইভেন্ট
+    function getPointerPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
 
-      score++;
-      currentScoreDisplay.innerText = score;
-
-      if (score > localHighScore) {
-        localHighScore = score;
-        localStorage.setItem("ekota_juggle_high", localHighScore);
-        highScoreDisplay.innerText = localHighScore;
+    function handleStart(e) {
+      if (!isGameRunning || ball.inFlight) return;
+      const pos = getPointerPos(e);
+      const dist = Math.hypot(pos.x - ball.x, pos.y - ball.y);
+      if (dist < 45) { // বলের ওপর টাচ
+        dragStart = pos;
       }
     }
 
-    // ক্যানভাসে ট্যাপ বা ক্লিক
-    function onCanvasTouch(e) {
-      e.preventDefault();
-      handleKick();
+    function handleEnd(e) {
+      if (!dragStart || !isGameRunning || ball.inFlight) return;
+      const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+      const rect = canvas.getBoundingClientRect();
+      const endPos = { x: clientX - rect.left, y: clientY - rect.top };
+
+      const dx = endPos.x - dragStart.x;
+      const dy = endPos.y - dragStart.y;
+      dragStart = null;
+
+      // যদি ওপরের দিকে সুইপ করা হয় (dy < -20)
+      if (dy < -20) {
+        ball.inFlight = true;
+        ball.vx = dx * 0.16;
+        ball.vy = dy * 0.18;
+
+        // গোলকিপারের রিঅ্যাকশন (বলের দিকে ঝাঁপ)
+        keeper.isDiving = true;
+        // কিপারের স্পিড স্কোরের সাথে বাড়বে
+        const reactionFactor = Math.min(0.85, 0.5 + score * 0.03);
+        const predictedX = ball.x + ball.vx * 15;
+        keeper.targetX = keeper.x + (predictedX - keeper.x) * reactionFactor;
+      }
     }
 
-    canvas.addEventListener("touchstart", onCanvasTouch, { passive: false });
-    canvas.addEventListener("mousedown", onCanvasTouch);
+    canvas.addEventListener("touchstart", (e) => { e.preventDefault(); handleStart(e); }, { passive: false });
+    canvas.addEventListener("touchend", (e) => { e.preventDefault(); handleEnd(e); }, { passive: false });
+    canvas.addEventListener("mousedown", handleStart);
+    canvas.addEventListener("mouseup", handleEnd);
 
     function gameLoop() {
       if (!isGameRunning) return;
 
-      // ফিজিক্স আপডেট
-      ball.vy += ball.gravity;
-      ball.y += ball.vy;
-      ball.x += ball.vx;
-
-      // পাশের দেওয়ালে বাউন্স
-      if (ball.x - ball.radius < 5) {
-        ball.x = ball.radius + 5;
-        ball.vx *= -0.7;
-      } else if (ball.x + ball.radius > canvas.width - 5) {
-        ball.x = canvas.width - ball.radius - 5;
-        ball.vx *= -0.7;
+      // কিপারের স্বাভাবিক মুভমেন্ট
+      if (!keeper.isDiving) {
+        keeper.x += keeper.vx;
+        const leftLimit = goalPost.x + keeper.width / 2;
+        const rightLimit = goalPost.x + goalPost.width - keeper.width / 2;
+        if (keeper.x < leftLimit || keeper.x > rightLimit) {
+          keeper.vx *= -1;
+        }
+      } else {
+        // ডাইভিং মুভমেন্ট
+        keeper.x += (keeper.targetX - keeper.x) * 0.18;
       }
 
-      // নিচে মাটিতে পড়লে আউট
-      const groundY = canvas.height - 35;
-      if (ball.y + ball.radius >= groundY) {
-        ball.y = groundY - ball.radius;
-        endGame();
-        return;
+      // বলের ফ্লাইট ও সাইজ ছোট হওয়া (3D প্রেক্ষিত)
+      if (ball.inFlight) {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.scale = Math.max(0.48, ball.scale - 0.024);
+        ball.rotation += 0.25;
+
+        // বল যখন গোলপোস্টের লাইনে পৌঁছাবে
+        if (ball.y <= goalPost.y + goalPost.height) {
+          checkGoalOutcome();
+          return;
+        }
       }
 
-      drawScene();
+      drawPenaltyScene();
       animationFrameId = requestAnimationFrame(gameLoop);
     }
 
-    function endGame() {
+    function checkGoalOutcome() {
+      const finalRadius = ball.radius * ball.scale;
+      const ballLeft = ball.x - finalRadius;
+      const ballRight = ball.x + finalRadius;
+      const ballTop = ball.y - finalRadius;
+
+      const insidePost = (
+        ballLeft >= goalPost.x + 8 &&
+        ballRight <= goalPost.x + goalPost.width - 8 &&
+        ballTop >= goalPost.y + 5
+      );
+
+      // কিপারের সাথে কোলিশন
+      const keeperLeft = keeper.x - keeper.width / 2;
+      const keeperRight = keeper.x + keeper.width / 2;
+      const keeperTop = keeper.y - keeper.height / 2;
+      const keeperBottom = keeper.y + keeper.height / 2;
+
+      const savedByKeeper = (
+        ballRight >= keeperLeft &&
+        ballLeft <= keeperRight &&
+        ball.y >= keeperTop &&
+        ball.y <= keeperBottom + 10
+      );
+
+      if (savedByKeeper) {
+        lives--;
+        flashMessage("আটকে গেছে! 🧤", "text-rose-400");
+      } else if (insidePost) {
+        score++;
+        currentScoreDisplay.innerText = score;
+        flashMessage("গোলললল! ⚽🔥", "text-amber-300");
+        // কিপারের গতি কিছুটা বাড়ানো
+        keeper.vx = (keeper.vx > 0 ? 1 : -1) * (2.2 + score * 0.15);
+      } else {
+        lives--;
+        flashMessage("মিস! বাইরে গেছে ❌", "text-rose-400");
+      }
+
+      updateLivesUI();
+
+      if (lives <= 0) {
+        setTimeout(endPenaltyGame, 600);
+      } else {
+        setTimeout(() => {
+          resetBall();
+          if (isGameRunning) animationFrameId = requestAnimationFrame(gameLoop);
+        }, 800);
+      }
+    }
+
+    function endPenaltyGame() {
       stopGame();
       finalScoreVal.innerText = score;
       gameOverOverlay.classList.remove("hidden");
-      drawScene();
+      drawPenaltyScene();
     }
 
-    function drawScene() {
+    function drawPenaltyScene() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // ঘাসের গ্রাউন্ড
-      const groundY = canvas.height - 35;
-      ctx.fillStyle = "#15803d";
-      ctx.fillRect(0, groundY, canvas.width, 35);
-      
-      // ঘাসের ওপর সাদা দাগ
+      // সবুজ মাঠের ড্রাফট
+      const fieldY = 160;
+      ctx.fillStyle = "#166534";
+      ctx.fillRect(0, fieldY, canvas.width, canvas.height - fieldY);
+
+      // পেনাল্টি ডি-বক্সের দাগ
       ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
       ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.moveTo(0, groundY);
-      ctx.lineTo(canvas.width, groundY);
+      ctx.arc(canvas.width / 2, fieldY + 30, 70, 0, Math.PI);
       ctx.stroke();
 
-      // বলের ছায়া
-      const shadowScale = Math.max(0.3, 1 - (groundY - ball.y) / canvas.height);
-      ctx.save();
+      // পেনাল্টি স্পট
       ctx.beginPath();
-      ctx.ellipse(ball.x, groundY + 4, ball.radius * shadowScale, (ball.radius / 3.5) * shadowScale, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(0, 0, 0, 0.28)";
+      ctx.arc(canvas.width / 2, canvas.height - 65, 4, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
       ctx.fill();
+
+      // গোলপোস্টের জাল
+      ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+      ctx.fillRect(goalPost.x, goalPost.y, goalPost.width, goalPost.height);
+
+      // জালের জালি রেখা
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.18)";
+      ctx.lineWidth = 1;
+      for (let x = goalPost.x; x <= goalPost.x + goalPost.width; x += 15) {
+        ctx.beginPath();
+        ctx.moveTo(x, goalPost.y);
+        ctx.lineTo(x, goalPost.y + goalPost.height);
+        ctx.stroke();
+      }
+      for (let y = goalPost.y; y <= goalPost.y + goalPost.height; y += 15) {
+        ctx.beginPath();
+        ctx.moveTo(goalPost.x, y);
+        ctx.lineTo(goalPost.x + goalPost.width, y);
+        ctx.stroke();
+      }
+
+      // গোলপোস্টের সাদা বার (ফ্রেম)
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(goalPost.x, goalPost.y + goalPost.height);
+      ctx.lineTo(goalPost.x, goalPost.y);
+      ctx.lineTo(goalPost.x + goalPost.width, goalPost.y);
+      ctx.lineTo(goalPost.x + goalPost.width, goalPost.y + goalPost.height);
+      ctx.stroke();
+
+      // গোলকিপার অঙ্কন (জার্সি ও গ্লাভস)
+      ctx.save();
+      ctx.translate(keeper.x, keeper.y);
+
+      // শরীর (জার্সি)
+      ctx.fillStyle = "#f59e0b"; // গোলকিপারের হলুদ জার্সি
+      ctx.fillRect(-keeper.width / 2, -keeper.height / 2 + 12, keeper.width, keeper.height - 12);
+
+      // মাথা
+      ctx.beginPath();
+      ctx.arc(0, -keeper.height / 2 + 6, 11, 0, Math.PI * 2);
+      ctx.fillStyle = "#fcd34d";
+      ctx.fill();
+
+      // গ্লাভস
+      ctx.fillStyle = "#ef4444";
+      ctx.beginPath();
+      ctx.arc(-keeper.width / 2 - 3, 0, 7, 0, Math.PI * 2);
+      ctx.arc(keeper.width / 2 + 3, 0, 7, 0, Math.PI * 2);
+      ctx.fill();
+
+      // পা
+      ctx.fillStyle = "#1e293b";
+      ctx.fillRect(-14, keeper.height / 2 - 4, 10, 10);
+      ctx.fillRect(4, keeper.height / 2 - 4, 10, 10);
+
       ctx.restore();
 
+      // সুইপ করার নির্দেশক গাইড অ্যারো (যখন বল স্থির থাকে)
+      if (!ball.inFlight && isGameRunning) {
+        ctx.strokeStyle = "rgba(251, 191, 36, 0.4)";
+        ctx.lineWidth = 3;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(ball.x, ball.y - 25);
+        ctx.lineTo(ball.x, ball.y - 65);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
       // ফুটবল অঙ্কন
+      const curRadius = ball.radius * ball.scale;
       ctx.save();
       ctx.translate(ball.x, ball.y);
       ctx.rotate(ball.rotation);
 
-      // বলের মূল বৃত্ত
+      // বলের বডি
       ctx.beginPath();
-      ctx.arc(0, 0, ball.radius, 0, Math.PI * 2);
+      ctx.arc(0, 0, curRadius, 0, Math.PI * 2);
       ctx.fillStyle = "#ffffff";
       ctx.fill();
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 2;
       ctx.strokeStyle = "#0f172a";
       ctx.stroke();
 
-      // ক্লাসিক ফুটবল প্যাচ (পেন্টাগন)
-      ctx.fillStyle = "#1e293b";
+      // ফুটবল ব্ল্যাক প্যাচ
+      ctx.fillStyle = "#0f172a";
       ctx.beginPath();
-      for (let i = 0; i < 5; i++) {
-        const ang = (i * 2 * Math.PI) / 5 - Math.PI / 2;
-        const px = Math.cos(ang) * (ball.radius * 0.42);
-        const py = Math.sin(ang) * (ball.radius * 0.42);
-        if (i === 0) ctx.moveTo(px, py);
-        else ctx.lineTo(px, py);
-      }
-      ctx.closePath();
+      ctx.arc(0, 0, curRadius * 0.4, 0, Math.PI * 2);
       ctx.fill();
-
-      // ছোট কালো সাইড ডট
-      for (let i = 0; i < 5; i++) {
-        const ang = (i * 2 * Math.PI) / 5;
-        const px = Math.cos(ang) * (ball.radius * 0.72);
-        const py = Math.sin(ang) * (ball.radius * 0.72);
-        ctx.beginPath();
-        ctx.arc(px, py, ball.radius * 0.16, 0, Math.PI * 2);
-        ctx.fillStyle = "#1e293b";
-        ctx.fill();
-      }
 
       ctx.restore();
     }
@@ -1284,7 +1462,7 @@
         return;
       }
       if (score <= 0) {
-        alert("অন্তত ১টি কিক স্কোর করতে হবে!");
+        alert("অন্তত ১টি গোল করতে হবে!");
         return;
       }
 
@@ -1330,7 +1508,7 @@
             <span class="font-bold text-slate-700 dark:text-slate-200">${item.name}</span>
           </div>
           <span class="font-black text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-md text-[11px]">
-            ${item.score} কিক
+            ${item.score} গোল
           </span>
         `;
         leaderboardList.appendChild(row);
